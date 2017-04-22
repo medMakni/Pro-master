@@ -6,7 +6,7 @@
 
 
 	<security:authentication-manager>
-		<security:ldap-authentication-provider
+				<security:ldap-authentication-provider
 			user-search-filter="(uid={0})" user-search-base="ou=users"
 			group-search-filter="(uniqueMember={0})" group-search-base="ou=groups"
 			group-role-attribute="cn" role-prefix="ROLE_" />
@@ -14,7 +14,23 @@
 	<security:ldap-server url="ldap://localhost:8389/o=mojo"
 		manager-dn="uid=admin,ou=system" manager-password="secret" />
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/" access="hasRole('ROLE_ADMIN')" />
-		<security:form-login />
+	
+	
+		<security:intercept-url pattern="/" access="permitAll"/>
+		<security:intercept-url pattern="/next" access="permitAll" />
+		<security:intercept-url pattern="/workflows" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/getmessages" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/sendmessage" access="permitAll"/>
+				<security:intercept-url pattern="/static/**" access="permitAll"/>
+		
+		
+		<security:form-login login-page="/login" 
+		 login-processing-url="/login"
+         authentication-failure-url="/login.html?error=true"
+			username-parameter="username"
+			password-parameter="password"
+					
+          />
+          		<security:csrf/>
 	</security:http>
 </beans>

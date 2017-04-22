@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/config/security-context.xml</config>
 		<config>WebContent/WEB-INF/test-servlet.xml</config>
+		<config>src/activit.cfg.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
