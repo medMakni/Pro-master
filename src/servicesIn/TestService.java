@@ -1,5 +1,6 @@
-package services;
+package servicesIn;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.activiti.engine.ProcessEngine;
@@ -10,9 +11,11 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 @Configuration("activit.cfg.xml")
-@Service
+@Service("TestService")
 public class TestService {
 	@SuppressWarnings("resource")
 	ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("activit.cfg.xml");
@@ -97,8 +100,9 @@ public class TestService {
 		}
 	
 	//retourner tous les taches 
-	public List<Task> getWorkflows(){
-		List<Task> taskb = taskService.createTaskQuery().taskCandidateUser("rb").list();
+	public List<Task> getWorkflows(Principal principal){
+	      //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<Task> taskb = taskService.createTaskQuery().taskCandidateUser(principal.getName()).list();
 		System.out.println(taskb);
 		taskService.saveTask(tasks.get(0));
 		taskService.saveTask(taskyfz.get(0));

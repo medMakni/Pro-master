@@ -2,17 +2,25 @@ package controllers;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+
+import servicesIn.TestService;
+
+
 
 @Controller
 public class LoginController {
+	TestService ts = new TestService();
 	@RequestMapping( value = "/login" )	
 	@Autowired
 	String showLogin() {
@@ -38,14 +46,18 @@ public class LoginController {
 	@ResponseBody
 	public Map<String, Object> getCreadentiels(Principal principal){
 		
-		Map<String, Object>data = new HashMap<String, Object>();
-		data.put("message", "jjjj");
-		data.put("message2", principal.getName());
+		Map<String, Object> data = new HashMap<String, Object>();
+		List<Task>l=(List<Task>) ts.getWorkflows(principal);
+		for(int i=0;i<l.size();i++){
+			data.put("workflows "+i, l.get(i).toString());
+			
+		}
+		return data;
 
 		
-		return data;
 		
 	}
+	RestTemplate restTemplate = new RestTemplate();
 	@RequestMapping( value = "/sendmessage" , method=RequestMethod.POST , produces="application/json")
 	@ResponseBody
 	public Map<String, Object> getData(@RequestBody Map<String, Object> data){
