@@ -4,7 +4,10 @@
 	<groupId>Pro</groupId>
 	<artifactId>Pro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
+	<modules>
+		<module>Backend</module>
+	</modules>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
