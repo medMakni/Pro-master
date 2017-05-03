@@ -15,7 +15,10 @@
 		manager-dn="uid=admin,ou=system" manager-password="secret" />
 	<security:http use-expressions="true">
 
+<<<<<<< HEAD
 		<security:intercept-url pattern="/tt" access="permitAll" />
+=======
+>>>>>>> 574e848c7df45d2e3462dd9151ae6cf8db7d58a2
 
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/next" access="permitAll" />
@@ -25,10 +28,16 @@
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/sendmessage"
 			access="permitAll" />
+<<<<<<< HEAD
 		<security:intercept-url pattern="/resources/**"
 			access="permitAll" />
 
 <security:intercept-url pattern="/static" access="permitAll()"/>
+=======
+		<security:intercept-url pattern="/static/**"
+			access="permitAll" />
+
+>>>>>>> 574e848c7df45d2e3462dd9151ae6cf8db7d58a2
 
 		<security:form-login login-page="/login"
 			login-processing-url="/login" authentication-failure-url="/login.html?error=true"

@@ -18,6 +18,10 @@ import servicesIn.TestService;
 
 
 
+import servicesIn.TestService;
+
+
+
 @Controller
 public class LoginController {
 	TestService ts = new TestService();
@@ -50,7 +54,10 @@ public class LoginController {
 		List<Task>l=(List<Task>) ts.getWorkflows(principal);
 		for(int i=0;i<l.size();i++){
 			data.put("workflows "+i, l.get(i).toString());
+<<<<<<< HEAD
 			
+=======
+>>>>>>> 574e848c7df45d2e3462dd9151ae6cf8db7d58a2
 		}
 		return data;
 
