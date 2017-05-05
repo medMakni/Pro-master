@@ -8,6 +8,11 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="_csrf_param" content="${_csrf.parameterName}"/>
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <title>INSPINIA | FooTable</title>
 
@@ -42,6 +47,28 @@
 	rel="stylesheet">
 <link href="resources/css/plugins/dropzone/dropzone.css"
 	rel="stylesheet">
+    <link href="resources/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+         This must be loaded before fileinput.min.js -->
+    <script src="resources/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+    <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+         This must be loaded before fileinput.min.js -->
+    <script src="resources/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
+         This must be loaded before fileinput.min.js -->
+    <script src="resources/js/plugins/purify.min.js" type="text/javascript"></script>
+    <!-- the main fileinput plugin file -->
+    <script src="resources/js/fileinput.min.js"></script>
+    <!-- bootstrap.js below is needed if you wish to zoom and view file content
+         in a larger detailed modal dialog -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- optionally if you need a theme like font awesome theme you can include
+        it as mentioned below -->
+    <script src="resources/themes/fa/theme.js"></script>
+    <!-- optionally if you need translation for your language then include
+        locale file as mentioned below -->
+    <script src="resources/js/locales/<lang>.js"></script>
 
 </head>
 
@@ -80,18 +107,18 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> <span
 							class="nav-label">Courriers</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivÃ©es.html">Courriers
-									ArrivÃ©es</a></li>
-							<li><a href="CourriersDÃ©parts.html">Courriers Sorties</a></li>
+							<li><a href="CourriersArrivées.html">Courriers
+									Arrivées</a></li>
+							<li><a href="CourriersDéparts.html">Courriers Sorties</a></li>
 							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
 
 						</ul></li>
 					<li><a href="#"><i class="fa fa-user"></i> <span
 							class="nav-label">Contactes</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivÃ©es.html"><i
-									class="fa fa-plus"></i>CrÃ©er Contacte</a></li>
-							<li><a href="CourriersDÃ©parts.html"><i
+							<li><a href="CourriersArrivées.html"><i
+									class="fa fa-plus"></i>Créer Contacte</a></li>
+							<li><a href="CourriersDéparts.html"><i
 									class="fa fa-list"></i></i>Liste Contacte</a></li>
 
 						</ul></li>
@@ -220,7 +247,7 @@
 				<div class="col-lg-12">
 					<div class="ibox float-e-margins">
 						<div class="ibox-title">
-							<h5>GÃ©nÃ©rale</h5>
+							<h5>Générale</h5>
 							<div class="ibox-tools">
 								<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
 								</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -265,7 +292,7 @@
 									</div>
 
 
-									<label class="col-sm-1 control-label">CatÃ©gorie:</label>
+									<label class="col-sm-1 control-label">Catégorie:</label>
 
 									<div class="btn-group">
 										<button data-toggle="dropdown"
@@ -300,7 +327,7 @@
 									<div class="col-sm-5">
 										<div class="form-group">
 											<label class="control-label col-sm-7" for="date_modified">Date
-												ArrivÃ©e</label>
+												Arrivée</label>
 											<div class="input-group date">
 												<span class="input-group-addon"><i
 													class="fa fa-calendar"></i></span><input id="date_modified"
@@ -410,7 +437,7 @@
 
 
 											<div class="mail-text h-200">
-
+												<form method="POST" action="uploadMultipleFile" enctype="multipart/form-data">
 												<div class="summernote">
 													<h3>Hello Jonathan!</h3>
 													dummy text of the printing and typesetting industry. <strong>Lorem
@@ -425,23 +452,34 @@
 
 												</div>
 												<div>
-													<form id="my-awesome-dropzone" class="dropzone" action="#">
-														<div class="dropzone-previews"></div>
-													</form>
+                                                <script src="resource/js/fileinput.js"></script>
+                                                <script src="resource/themes/fa/theme.js"></script>
+												
+                                                <label class="control-label">Select File</label>
+                                                <input id="input-fa" name="name" type="file" multiple class="file-loading">
 
-												</div>
+                                              
+												
+                                                <script>
+
+
+                                                $("#imgInp").change(function(){
+                                                    readURL(this);
+                                                });
+                                                    $("#input-fa").fileinput({
+                                                        theme: "fa",
+                                                        uploadUrl: "/file-upload-batch/2",
+                                                        	
+                                                    });
+                                                </script>
+
+                                            </div>
 												<div class="clearfix"></div>
-											</div>
+											
 											<div class="mail-body text-right tooltip-demo">
-												<a href="mailbox.html" class="btn btn-sm btn-primary"
-													data-toggle="tooltip" data-placement="top" title="Send"><i
-													class="fa fa-reply"></i> Send</a> <a href="mailbox.html"
-													class="btn btn-white btn-sm" data-toggle="tooltip"
-													data-placement="top" title="Discard email"><i
-													class="fa fa-times"></i> Discard</a> <a href="mailbox.html"
-													class="btn btn-white btn-sm" data-toggle="tooltip"
-													data-placement="top" title="Move to draft folder"><i
-													class="fa fa-pencil"></i> Draft</a>
+												<input type="submit" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send" value= "send"/><!-- <i class="fa fa-reply"></i> --> 
+											</div>
+											</form>
 											</div>
 											<div class="clearfix"></div>
 										</div>
@@ -581,6 +619,15 @@
 
 		});
 	</script>
+	<script type="text/javascript">
+$(function () {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+</script>
 	<!-- Mainly scripts -->
 	<script src="resources/js/jquery-2.1.1.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
