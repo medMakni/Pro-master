@@ -1,16 +1,18 @@
 package controllers;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,49 +83,53 @@ public class LoginController {
 	}
 	@RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST , produces="application/json")
 	public @ResponseBody
-	Map<String, Object> uploadMultipleFileHandler(
+	Boolean uploadMultipleFileHandler(
 			@RequestParam("name") MultipartFile[] files) {
 		MailService ms= new MailService();
-
-		Map<String, Object>rval = new HashMap<String, Object>();
+		Map<String, List<MultipartFile>>rval = new HashMap<String, List<MultipartFile>>();
 		String message = "";
-		//System.out.println(files[0].getOriginalFilename());
-		//System.out.println(files[1].getOriginalFilename());
+		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+		List<Object> files1 = new ArrayList<>();
+		List<Object> files2 = new ArrayList<>();
+
 		for (int i = 0; i < files.length; i++) {
 			MultipartFile file = files[i];
 
+System.out.println(file.getOriginalFilename());
+			
+				try {
+					byte[] bytes = file.getBytes();
+					files1.add(bytes);
+					files2.add(file.getOriginalFilename());
+					ByteArrayResource resource = new ByteArrayResource(file.getBytes()) { 
+				        @Override 
+				        public String getFilename() { 
+				            return file.getOriginalFilename(); 
+				        } 
+				    }; 
+				   map.add("files", resource);
+					//System.out.println(map.toString());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		
 
-			try {
-				byte[] bytes = file.getBytes();
-				RestTemplate restTemplate = new RestTemplate();
-				String SERVER_URI="http://localhost:8080//BackEndFinalVersio";
-				restTemplate.postForObject(SERVER_URI+"/uploadMultipleFile", file, PieceJointe.class);
-				// Creating the directory to store file
-				/*String rootPath = "C:/Users/Wassim/Desktop/uploads";
-				File dir = new File(rootPath);
-				if (!dir.exists())
-					dir.mkdirs();
-
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + files[i].getOriginalFilename());
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();*/
-
-				ms.encodeFileToBase64Binary( bytes);
-
-				message = message + ms.encodeFileToBase64Binary( bytes);
-			} catch (Exception e) {
-				message+="You failed to upload " +  " => " + e.getMessage();
-				rval.put("error",message);
-
-			}
+			
 		}
 		
-		rval.put("success",message);
+		//map.put("files", files1);
+		map.put("names", files2);
+		System.out.println(map.get("files").toString());
+		RestTemplate restTemplate = new RestTemplate();
+		String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
+		
+		Boolean p=restTemplate.postForObject(SERVER_URI+"/uploadMultipleFile", map, Boolean.class);
+		System.out.println(p.toString());
 
-		return rval;
+
+		//message = message + ms.encodeFileToBase64Binary( bytes);
+		//rval.put("success",message);
+
+		return true;
 	}
 }

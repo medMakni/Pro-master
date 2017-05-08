@@ -1,16 +1,28 @@
 package servicesIn;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class PieceJointe {
-byte[] file64;
+	MultipartFile file64;
 
-public byte[] getFile64() {
-	return file64;
-}
+	@Override
+	public String toString() {
+		return "{success:"+  getFile64()+"}"  ;
+	}
 
-public void setFile64(byte[] file64) {
-	this.file64 = file64;
-}
+	public PieceJointe(MultipartFile file64) {
+		super();
+		this.file64 = file64;
+	}
+
+	public MultipartFile getFile64() {
+		return file64;
+	}
+
+	public void setFile64(MultipartFile file64) {
+		this.file64 = file64;
+	}
+
 
 
 }
