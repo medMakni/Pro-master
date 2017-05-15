@@ -85,9 +85,8 @@
 								src="resources/img/profile_small.jpg" />
 							</span> <a data-toggle="dropdown" class="dropdown-toggle"
 								href="resources/#"> <span class="clear"> <span
-									class="block m-t-xs"> <strong class="font-bold">David
-											Williams</strong>
-								</span> <span class="text-muted text-xs block">Art Director <b
+									class="block m-t-xs"> <strong class="font-bold">${realName }</strong>
+								</span> <span class="text-muted text-xs block">${roles},${directions} <b
 										class="caret"></b></span>
 							</span>
 							</a>
@@ -146,7 +145,7 @@
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li><span class="m-r-sm text-muted welcome-message">Welcome
-								to INSPINIA+ Admin Theme.</span></li>
+								${pageContext.request.userPrincipal.name}</span></li>
 						<li class="dropdown"><a class="dropdown-toggle count-info"
 							data-toggle="dropdown" href="resources/#"> <i
 								class="fa fa-envelope"></i> <span class="label label-warning">16</span>
@@ -239,7 +238,7 @@
 							</ul></li>
 
 
-						<li><a href="resources/login.html"> <i
+						<li><a href="${pageContext.request.contextPath}/logout"> <i
 								class="fa fa-sign-out"></i> Log out
 						</a></li>
 					</ul>
@@ -473,6 +472,10 @@
                                                     });
                                                 </script>
 
+                                            </div>
+                                            <div>
+                                                <label class="control-label">Select File</label>
+    <input id="input-1" type="file" class="file">
                                             </div>
 												<div class="clearfix"></div>
 											

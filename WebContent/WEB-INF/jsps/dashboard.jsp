@@ -63,18 +63,18 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="CourriersArrivées.html"><i class="fa fa-plus"></i>Créer Contacte</a></li>
-                        <li><a href="CourriersDéparts.html"><i class="fa fa-list"></i></i>Liste Contacte</a></li>
+                        <li><a href="CourriersDéparts.html"><i class="fa fa-list"></i>Liste Contacte</a></li>
 
                     </ul>
                 </li>
 
                 <li>
-                    <a href="../mailbox.html"><i class="fa fa-bar-chart-o"></i></i> <span
+                    <a href="../mailbox.html"><i class="fa fa-bar-chart-o"></i> <span
                             class="nav-label">Statistique </span></a>
 
                 </li>
 
-
+			</ul>
         </div>
     </nav>
 
@@ -196,7 +196,7 @@
 
 
                     <li>
-                        <a href="../login.html">
+                        <a href="${pageContext.request.contextPath}/logout">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>

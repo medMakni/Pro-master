@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import servicesIn.MailService;
-import servicesIn.PieceJointe;
 import servicesIn.TestService;
 
 
@@ -30,6 +28,7 @@ import servicesIn.TestService;
 @Controller
 public class LoginController {
 	TestService ts = new TestService();
+	final String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
 	@RequestMapping( value = "/login" )	
 	@Autowired
 	String showLogin() {
@@ -51,6 +50,27 @@ public class LoginController {
 		}*/
 		return "login";
 	}
+	@RequestMapping(value = "/logout")	
+	@Autowired
+	String showLogout() {
+
+	/*	if (LOG.isTraceEnabled()) {
+			LOG.trace("Test: TRACE level message.");
+		}
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Test: DEBUG level message.");
+		}
+		if (LOG.isInfoEnabled()) {
+			LOG.info("Test: INFO level message.");
+		}
+		if (LOG.isWarnEnabled()) {
+			LOG.warn("Test: WARN level message.");
+		}
+		if (LOG.isErrorEnabled()) {
+			LOG.error("Test: ERROR level message.");
+		}*/
+		return "CreationCourrier";
+	}
 	@RequestMapping( value = "/getmessages" , method=RequestMethod.GET , produces="application/json")
 	@ResponseBody
 	public Map<String, Object> getCreadentiels(Principal principal){
@@ -66,7 +86,8 @@ public class LoginController {
 		
 		
 	}
-	RestTemplate restTemplate = new RestTemplate();
+	
+	//RestTemplate restTemplate = new RestTemplate();
 	@RequestMapping( value = "/sendmessage" , method=RequestMethod.POST , produces="application/json")
 	@ResponseBody
 	public Map<String, Object> getData(@RequestBody Map<String, Object> data){
@@ -85,9 +106,7 @@ public class LoginController {
 	public @ResponseBody
 	Boolean uploadMultipleFileHandler(
 			@RequestParam("name") MultipartFile[] files) {
-		MailService ms= new MailService();
-		Map<String, List<MultipartFile>>rval = new HashMap<String, List<MultipartFile>>();
-		String message = "";
+
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 		List<Object> files1 = new ArrayList<>();
 		List<Object> files2 = new ArrayList<>();
@@ -121,7 +140,7 @@ System.out.println(file.getOriginalFilename());
 		map.put("names", files2);
 		System.out.println(map.get("files").toString());
 		RestTemplate restTemplate = new RestTemplate();
-		String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
+		
 		
 		Boolean p=restTemplate.postForObject(SERVER_URI+"/uploadMultipleFile", map, Boolean.class);
 		System.out.println(p.toString());

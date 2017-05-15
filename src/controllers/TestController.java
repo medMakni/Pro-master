@@ -1,49 +1,70 @@
 package controllers;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.task.Task;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
+import servicesIn.LoginService;
 import servicesIn.TestService;
 @Controller
 
 public class TestController {
-	 
+	final String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
+
 	//private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 	TestService ts = new TestService();
+	LoginService ls =new LoginService();
+
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	@Autowired
-	public ModelAndView showHome() {
+	public
+	 String showHome(Model model,Principal principal) {
+		String realName = ls.getUsersFromUid(principal.getName());
+		model.addAttribute("realName", realName);
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, Object> mapUid = new HashMap<String, Object>();
+		mapUid.put("uid", principal.getName());
+		System.out.println("loool");
+		@SuppressWarnings("unchecked")
+		Map<String,Object> roles=restTemplate.getForObject(SERVER_URI+"/getUserRole"+"?uid=" + principal.getName(), HashMap.class);
+		@SuppressWarnings("unchecked")
+		List<String>r=(List<String>) roles.get("roles");
+		@SuppressWarnings("unchecked")
+		List<String>d=(List<String>) roles.get("directions");
 
-		ModelAndView mv = new ModelAndView();
-		/*if (LOG.isTraceEnabled()) {
-			LOG.trace("Test: TRACE level message.");
-		}
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("Test: DEBUG level message.");
-		}
-		if (LOG.isInfoEnabled()) {
-			LOG.info("Test: INFO level message.");
-		}
-		if (LOG.isWarnEnabled()) {
-			LOG.warn("Test: WARN level message.");
-		}
-		if (LOG.isErrorEnabled()) {
-			LOG.error("Test: ERROR level message.");
-		}*/
-		mv.setViewName("CreationCourrier");
-		return mv;
+		
+		model.addAttribute("roles", r);
+		model.addAttribute("directions", d);
+
+		return "CreationCourrier";
+	}
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public
+	 String showTest() {
+
+
+		return "test";
+	}
+	@RequestMapping(value = "/mail", method = RequestMethod.GET)
+	public
+	 String showmail() {
+
+
+		return "mail_detail";
 	}
 
 	@RequestMapping(value = "/next", method = RequestMethod.GET)

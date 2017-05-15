@@ -447,7 +447,7 @@
                                         <span class="corner"></span>
 
                                         <div class="image">
-                                            <img alt="image" class="img-responsive" src="img/p1.jpg">
+                                            <img alt="image" class="img-responsive" src="resources/img/p1.jpg">
                                         </div>
                                         <div class="file-name">
                                             Italy street.jpg
@@ -464,7 +464,7 @@
                                         <span class="corner"></span>
 
                                         <div class="image">
-                                            <img alt="image" class="img-responsive" src="img/p2.jpg">
+    										<iframe src="resources/img/LM_MAKNI_Mohamed Wassim.pdf"></iframe>
                                         </div>
                                         <div class="file-name">
                                             My feel.png
