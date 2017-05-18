@@ -9,16 +9,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="_csrf_param" content="${_csrf.parameterName}"/>
-<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_param" content="${_csrf.parameterName}" />
+<meta name="_csrf" content="${_csrf.token}" />
 <!-- default header name is X-CSRF-TOKEN -->
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 
 <title>INSPINIA | FooTable</title>
 
 <s:url value="resources/css/bootstrap.min.css" var="bootstrapCss" />
-<s:url value="resources/css/plugins/datapicker/datepicker3.css" var="datepicker" />
+<s:url value="resources/css/plugins/datapicker/datepicker3.css"
+	var="datepicker" />
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
 <link href="${bootstrapCss}" rel="stylesheet">
 <link href="${datepicker}" rel="stylesheet">
@@ -35,40 +41,49 @@
 
 <link href="resources/font-awesome/css/font-awesome.css"
 	rel="stylesheet">
-<link href="resources/css/plugins/iCheck/custom.css"
-	rel="stylesheet">
+<link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
 <link href="resources/css/plugins/summernote/summernote.css"
 	rel="stylesheet">
 <link href="resources/css/plugins/summernote/summernote-bs3.css"
 	rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
-<link href="resources/css/plugins/dropzone/basic.css"
-	rel="stylesheet">
+<link href="resources/css/plugins/dropzone/basic.css" rel="stylesheet">
 <link href="resources/css/plugins/dropzone/dropzone.css"
 	rel="stylesheet">
-    <link href="resources/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+<link href="resources/css/fileinput.min.css" media="all"
+	rel="stylesheet" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+	rel="stylesheet" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
          This must be loaded before fileinput.min.js -->
-    <script src="resources/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
-    <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+<script src="resources/js/plugins/canvas-to-blob.min.js"
+	type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
          This must be loaded before fileinput.min.js -->
-    <script src="resources/js/plugins/sortable.min.js" type="text/javascript"></script>
-    <!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
+<script src="resources/js/plugins/sortable.min.js"
+	type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
          This must be loaded before fileinput.min.js -->
-    <script src="resources/js/plugins/purify.min.js" type="text/javascript"></script>
-    <!-- the main fileinput plugin file -->
-    <script src="resources/js/fileinput.min.js"></script>
-    <!-- bootstrap.js below is needed if you wish to zoom and view file content
+<script src="resources/js/plugins/purify.min.js" type="text/javascript"></script>
+<!-- the main fileinput plugin file -->
+<script src="resources/js/fileinput.min.js"></script>
+<!-- bootstrap.js below is needed if you wish to zoom and view file content
          in a larger detailed modal dialog -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- optionally if you need a theme like font awesome theme you can include
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<!-- optionally if you need a theme like font awesome theme you can include
         it as mentioned below -->
-    <script src="resources/themes/fa/theme.js"></script>
-    <!-- optionally if you need translation for your language then include
+<script src="resources/themes/fa/theme.js"></script>
+<!-- optionally if you need translation for your language then include
         locale file as mentioned below -->
-    <script src="resources/js/locales/<lang>.js"></script>
+<script src="resources/js/locales/<lang>.js"></script>
 
 </head>
 
@@ -86,8 +101,9 @@
 							</span> <a data-toggle="dropdown" class="dropdown-toggle"
 								href="resources/#"> <span class="clear"> <span
 									class="block m-t-xs"> <strong class="font-bold">${realName }</strong>
-								</span> <span class="text-muted text-xs block">${roles},${directions} <b
-										class="caret"></b></span>
+								</span> <span class="text-muted text-xs block">${roles},${directions}
+										<b class="caret"></b>
+								</span>
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -106,8 +122,7 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> <span
 							class="nav-label">Courriers</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivées.html">Courriers
-									Arrivées</a></li>
+							<li><a href="CourriersArrivées.html">Courriers Arrivées</a></li>
 							<li><a href="CourriersDéparts.html">Courriers Sorties</a></li>
 							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
 
@@ -153,8 +168,8 @@
 							<ul class="dropdown-menu dropdown-messages">
 								<li>
 									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="../img/a7.jpg">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/a7.jpg">
 										</a>
 										<div class="media-body">
 											<small class="pull-right">46h ago</small> <strong>Mike
@@ -167,8 +182,8 @@
 								<li class="divider"></li>
 								<li>
 									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="../img/a4.jpg">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/a4.jpg">
 										</a>
 										<div class="media-body ">
 											<small class="pull-right text-navy">5h ago</small> <strong>Chris
@@ -181,8 +196,8 @@
 								<li class="divider"></li>
 								<li>
 									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="../img/profile.jpg">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/profile.jpg">
 										</a>
 										<div class="media-body ">
 											<small class="pull-right">23h ago</small> <strong>Monica
@@ -238,359 +253,367 @@
 							</ul></li>
 
 
-						<li><a href="${pageContext.request.contextPath}/logout"> <i
-								class="fa fa-sign-out"></i> Log out
+						<li><a href="${pageContext.request.contextPath}/logout">
+								<i class="fa fa-sign-out"></i> Log out
 						</a></li>
 					</ul>
 				</nav>
-				<div class="col-lg-12">
-					<div class="ibox float-e-margins">
-						<div class="ibox-title">
-							<h5>Générale</h5>
-							<div class="ibox-tools">
-								<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
-								</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									<i class="fa fa-wrench"></i>
-								</a>
-								<ul class="dropdown-menu dropdown-user">
-									<li><a href="#">Config option 1</a></li>
-									<li><a href="#">Config option 2</a></li>
-								</ul>
-								<a class="close-link"> <i class="fa fa-times"></i>
-								</a>
+
+				<form method="POST" action="sendCourrierData" enctype="multipart/form-data">
+					<div class="col-lg-12">
+						<div class="ibox float-e-margins">
+							<div class="ibox-title">
+								<h5>Générale</h5>
+								<div class="ibox-tools">
+									<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+									</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+										<i class="fa fa-wrench"></i>
+									</a>
+									<ul class="dropdown-menu dropdown-user">
+										<li><a href="#">Config option 1</a></li>
+										<li><a href="#">Config option 2</a></li>
+									</ul>
+									<a class="close-link"> <i class="fa fa-times"></i>
+									</a>
+								</div>
 							</div>
-						</div>
-						<div class="ibox-content">
-							<form class="form-horizontal" method="get">
-								<p>
-									<span class="label label-info">Courrier</span>
-								</p>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Objet:</label>
+							<div class="ibox-content">
+								<div class="form-horizontal">
+									<p>
+										<span class="label label-info">Courrier</span>
+									</p>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Objet:</label>
 
-									<div class="col-sm-10">
-										<input type="text" class="form-control" value="">
-									</div>
-								</div>
-								<br>
-								<div class="form-group">
-
-									<label class="col-sm-2 control-label">Nature:</label>
-
-									<div class="col-sm-5">
-										<div class="btn-group" data-toggle="buttons">
-											<label class="btn btn-primary active"> <input
-												type="radio" name="options" id="lettre" autocomplete="off"
-												checked> Lettre
-											</label> <label class="btn btn-primary"> <input type="radio"
-												name="options" id="mail" autocomplete="off"> Mail
-											</label> <label class="btn btn-primary"> <input type="radio"
-												name="options" id="fax" autocomplete="off"> Fax
-											</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" value="" name="objet">
 										</div>
 									</div>
+									<br>
+									<div class="form-group">
 
+										<label class="col-sm-2 control-label">Nature:</label>
 
-									<label class="col-sm-1 control-label">Catégorie:</label>
-
-									<div class="btn-group">
-										<button data-toggle="dropdown"
-											class="btn btn-default dropdown-toggle">
-											Courrier Normal<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a href="#" class="font-bold">Courrier Normal</a></li>
-											<li><a href="#" class="font-bold">Courrier Ã  la
-													clientÃ¨le</a></li>
-											<li><a href="#" class="font-bold">Autre</a></li>
-
-										</ul>
-									</div>
-								</div>
-
-
-								<br>
-
-								<div class="row">
-									<div class="col-sm-5">
-										<div class="form-group">
-											<label class="control-label col-sm-5" for="date_added">Date
-												Courrier</label>
-											<div class="input-group date">
-												<span class="input-group-addon"><i
-													class="fa fa-calendar"></i></span><input id="date_added"
-													type="text" class="form-control" value="03/04/2014">
+										<div class="col-sm-5">
+											<div class="btn-group" data-toggle="buttons">
+												<label class="btn btn-primary active"> <input
+													type="radio" name="options" id="lettre" autocomplete="off"
+													checked> Lettre
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="mail" autocomplete="off"> Mail
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="fax" autocomplete="off"> Fax
+												</label>
 											</div>
 										</div>
-									</div>
-									<div class="col-sm-5">
-										<div class="form-group">
-											<label class="control-label col-sm-7" for="date_modified">Date
-												Arrivée</label>
-											<div class="input-group date">
-												<span class="input-group-addon"><i
-													class="fa fa-calendar"></i></span><input id="date_modified"
-													type="text" class="form-control" value="03/06/2014">
-											</div>
+
+
+										<label class="col-sm-1 control-label">Catégorie:</label>
+
+										<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
+
+											</ul>
 										</div>
 									</div>
 
-								</div>
 
+									<br>
 
-								<p>
-									<span class="label label-info">Origine</span>
-								</p>
-								<br>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Organisme:</label>
+									<div class="row">
+										<div class="col-sm-5">
+											<div class="form-group">
+												<label class="control-label col-sm-5" for="date_added">Date
+													Courrier</label>
+												<div class="input-group date">
+													<span class="input-group-addon"><i
+														class="fa fa-calendar"></i></span><input id="date_added"
+														type="text" class="form-control" value="03/04/2014">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="form-group">
+												<label class="control-label col-sm-7" for="date_modified">Date
+													Arrivée</label>
+												<div class="input-group date">
+													<span class="input-group-addon"><i
+														class="fa fa-calendar"></i></span><input id="date_modified"
+														type="text" class="form-control" value="03/06/2014">
+												</div>
+											</div>
+										</div>
 
-									<div class="btn-group">
-										<button data-toggle="dropdown"
-											class="btn btn-default dropdown-toggle">
-											Courrier Normal<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a href="#" class="font-bold">Courrier Normal</a></li>
-											<li><a href="#" class="font-bold">Courrier Ã  la
-													clientÃ¨le</a></li>
-											<li><a href="#" class="font-bold">Autre</a></li>
-
-										</ul>
-									</div>
-								</div>
-								<br>
-								<div class="form-group">
-
-									<label class="col-sm-2 control-label">Contact:</label>
-									<div class="btn-group">
-										<button data-toggle="dropdown"
-											class="btn btn-default dropdown-toggle">
-											Courrier Normal<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li><a href="#" class="font-bold">Courrier Normal</a></li>
-											<li><a href="#" class="font-bold">Courrier Ã  la
-													clientÃ¨le</a></li>
-											<li><a href="#" class="font-bold">Autre</a></li>
-
-										</ul>
 									</div>
 
 
-								</div>
+									<p>
+										<span class="label label-info">Origine</span>
+									</p>
+									<br>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Organisme:</label>
 
+										<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
 
-
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">E-mail:</label>
-
-									<div class="col-sm-10">
-										<input type="text" class="form-control" value="">
+											</ul>
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Fax:</label>
+									<br>
+									<div class="form-group">
 
-									<div class="col-sm-10">
-										<input type="text" class="form-control" value="">
+										<label class="col-sm-2 control-label">Contact:</label>
+										<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
+
+											</ul>
+										</div>
+
+
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Adresse:</label>
 
-									<div class="col-sm-10">
-										<input type="text" class="form-control" value="">
+
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">E-mail:</label>
+
+										<div class="col-sm-10">
+											<input type="text" class="form-control" value="">
+										</div>
 									</div>
-								</div>
-								<br>
-								<p>
-									<span class="label label-info">Corps</span>
-								</p>
-								<div class="animated fadeInRight">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Fax:</label>
 
-									<div class="mail-box">
+										<div class="col-sm-10">
+											<input type="text" class="form-control" value="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Adresse:</label>
+
+										<div class="col-sm-10">
+											<input type="text" class="form-control" value="">
+										</div>
+									</div>
+									<br>
+									<p>
+										<span class="label label-info">Corps</span>
+									</p>
+									<div class="animated fadeInRight">
+
+										<div class="mail-box">
 
 
-										<div class="mail-body">
+											<div class="mail-body">
 
-											<form class="form-horizontal" method="get">
-												<div class="form-group">
-													<label class="col-sm-2 control-label">To:</label>
+												<div class="form-horizontal">
+													<div class="form-group">
+														<label class="col-sm-2 control-label">To:</label>
 
-													<div class="col-sm-10">
-														<input type="text" class="form-control"
-															value="alex.smith@corporat.com">
+														<div class="col-sm-10">
+															<input type="text" class="form-control"
+																value="alex.smith@corporat.com">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-2 control-label">Subject:</label>
+
+														<div class="col-sm-10">
+															<input type="text" class="form-control" value="">
+														</div>
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="col-sm-2 control-label">Subject:</label>
 
-													<div class="col-sm-10">
-														<input type="text" class="form-control" value="">
+
+
+												<div class="mail-text h-200">
+													<div class="summernote">
+														<h3>Hello Jonathan!</h3>
+														dummy text of the printing and typesetting industry. <strong>Lorem
+															Ipsum has been the industry's</strong> standard dummy text ever
+														since the 1500s, when an unknown printer took a galley of
+														type and scrambled it to make a type specimen book. It has
+														survived not only five centuries, but also the leap into
+														electronic typesetting, remaining essentially unchanged.
+														It was popularised in the 1960s with the release of
+														Letraset sheets containing Lorem Ipsum passages, and more
+														recently with <br /> <br />
+
 													</div>
+													<div>
+														<script src="resource/js/fileinput.js"></script>
+														<script src="resource/themes/fa/theme.js"></script>
+
+														<label class="control-label">Select File</label> <input
+															id="input-fa" name="name" type="file" multiple
+															class="file-loading">
+
+
+
+														<script>
+															$("#imgInp")
+																	.change(
+																			function() {
+																				readURL(this);
+																			});
+															$("#input-fa")
+																	.fileinput(
+																			{
+																				theme : "fa",
+																				uploadUrl : "/file-upload-batch/2",
+
+																			});
+														</script>
+
+													</div>
+
+													<div class="clearfix"></div>
+
+													<div class="mail-body text-right tooltip-demo">
+														<input type="submit" class="btn btn-sm btn-primary"
+															data-toggle="tooltip" data-placement="top" title="Send"
+															value="send" />
+														<!-- <i class="fa fa-reply"></i> -->
+													</div>
+
 												</div>
-											</form>
-
-
-
-											<div class="mail-text h-200">
-												<form method="POST" action="uploadMultipleFile" enctype="multipart/form-data">
-												<div class="summernote">
-													<h3>Hello Jonathan!</h3>
-													dummy text of the printing and typesetting industry. <strong>Lorem
-														Ipsum has been the industry's</strong> standard dummy text ever
-													since the 1500s, when an unknown printer took a galley of
-													type and scrambled it to make a type specimen book. It has
-													survived not only five centuries, but also the leap into
-													electronic typesetting, remaining essentially unchanged. It
-													was popularised in the 1960s with the release of Letraset
-													sheets containing Lorem Ipsum passages, and more recently
-													with <br /> <br />
-
-												</div>
-												<div>
-                                                <script src="resource/js/fileinput.js"></script>
-                                                <script src="resource/themes/fa/theme.js"></script>
-												
-                                                <label class="control-label">Select File</label>
-                                                <input id="input-fa" name="name" type="file" multiple class="file-loading">
-
-                                              
-												
-                                                <script>
-
-
-                                                $("#imgInp").change(function(){
-                                                    readURL(this);
-                                                });
-                                                    $("#input-fa").fileinput({
-                                                        theme: "fa",
-                                                        uploadUrl: "/file-upload-batch/2",
-                                                        	
-                                                    });
-                                                </script>
-
-                                            </div>
-                                            <div>
-                                                <label class="control-label">Select File</label>
-    <input id="input-1" type="file" class="file">
-                                            </div>
 												<div class="clearfix"></div>
-											
-											<div class="mail-body text-right tooltip-demo">
-												<input type="submit" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send" value= "send"/><!-- <i class="fa fa-reply"></i> --> 
 											</div>
-											</form>
-											</div>
-											<div class="clearfix"></div>
+
 										</div>
 
 									</div>
-
 								</div>
-							</form>
-						</div>
-					</div>
-
-
-				</div>
-
-
-
-
-
-
-
-
-
-				<div class="col-lg-12">
-					<div class="ibox float-e-margins">
-						<div class="ibox-title">
-							<h5>Traitement</h5>
-							<div class="ibox-tools">
-								<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
-								</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									<i class="fa fa-wrench"></i>
-								</a>
-								<ul class="dropdown-menu dropdown-user">
-									<li><a href="#">Config option 1</a></li>
-									<li><a href="#">Config option 2</a></li>
-								</ul>
-								<a class="close-link"> <i class="fa fa-times"></i>
-								</a>
 							</div>
 						</div>
-						<div class="ibox-content">
-							<form class="form-horizontal" method="get">
-								<p>
-									<span class="label label-info">Intervenants</span>
-								</p>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Responsable:</label>
-									<div class="col-sm-10">
-										<div data-toggle="buttons-checkbox" class="btn-group">
-											<button class="btn btn-primary btn-outline" type="button">
-												Lettre</button>
-											<button class="btn btn-primary btn-outline" type="button">
-												Mail</button>
-											<button class="btn btn-primary btn-outline" type="button">
-												Fax</button>
-										</div>
-									</div>
-								</div>
-								<br>
-								<div class="form-group">
 
-									<label class="col-sm-2 control-label">En copie:</label>
-
-									<div class="col-sm-10">
-
-										<div class="btn-group" data-toggle="buttons">
-											<label class="btn btn-primary active"> <input
-												type="radio" name="options" id="option1" autocomplete="off"
-												checked> Radio 1 (preselected)
-											</label> <label class="btn btn-primary"> <input type="radio"
-												name="options" id="option2" autocomplete="off">
-												Radio 2
-											</label> <label class="btn btn-primary"> <input type="radio"
-												name="options" id="option3" autocomplete="off">
-												Radio 3
-											</label>
-										</div>
-									</div>
-
-
-
-								</div>
-
-
-								<p>
-									<span class="label label-info">Workflow</span>
-								</p>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Commantaire:</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" value="">
-									</div>
-								</div>
-
-								<button class="btn btn-primary " type="button">
-									<i class="fa fa-check"></i>&nbsp;Submit
-								</button>
-								<button class="btn btn-warning " type="button">
-									<i class="fa fa-warning"></i> <span class="bold">annuler</span>
-								</button>
-
-							</form>
-
-						</div>
 
 					</div>
 
 
-				</div>
+
+
+
+
+
+
+
+					<div class="col-lg-12">
+						<div class="ibox float-e-margins">
+							<div class="ibox-title">
+								<h5>Traitement</h5>
+								<div class="ibox-tools">
+									<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+									</a> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+										<i class="fa fa-wrench"></i>
+									</a>
+									<ul class="dropdown-menu dropdown-user">
+										<li><a href="#">Config option 1</a></li>
+										<li><a href="#">Config option 2</a></li>
+									</ul>
+									<a class="close-link"> <i class="fa fa-times"></i>
+									</a>
+								</div>
+							</div>
+							<div class="ibox-content">
+								<div class="form-horizontal">
+									<p>
+										<span class="label label-info">Intervenants</span>
+									</p>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Responsable:</label>
+										<div class="col-sm-10">
+											<div data-toggle="buttons-checkbox" class="btn-group">
+												<button class="btn btn-primary btn-outline" type="button">
+													Lettre</button>
+												<button class="btn btn-primary btn-outline" type="button">
+													Mail</button>
+												<button class="btn btn-primary btn-outline" type="button">
+													Fax</button>
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="form-group">
+
+										<label class="col-sm-2 control-label">En copie:</label>
+
+										<div class="col-sm-10">
+
+											<div class="btn-group" data-toggle="buttons">
+												<label class="btn btn-primary active"> <input
+													type="radio" name="options" id="option1" autocomplete="off"
+													checked> Radio 1 (preselected)
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="option2" autocomplete="off">
+													Radio 2
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="option3" autocomplete="off">
+													Radio 3
+												</label>
+											</div>
+										</div>
+
+
+
+									</div>
+
+
+									<p>
+										<span class="label label-info">Workflow</span>
+									</p>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Commantaire:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" value="">
+										</div>
+									</div>
+
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="form-group">
+
+						<button class="btn btn-primary " type="submit">
+							<i class="fa fa-check"></i>&nbsp;Submit
+						</button>
+						<button class="btn btn-warning " type="button">
+							<i class="fa fa-warning"></i> <span class="bold">annuler</span>
+						</button>
+					</div>
+				</form>
 			</div>
 
 
@@ -623,20 +646,19 @@
 		});
 	</script>
 	<script type="text/javascript">
-$(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
-});
-</script>
+		$(function() {
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(header, token);
+			});
+		});
+	</script>
 	<!-- Mainly scripts -->
 	<script src="resources/js/jquery-2.1.1.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-	<script
-		src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
 	<!-- Custom and plugin javascript -->
 	<script src="resources/js/inspinia.js"></script>
@@ -645,8 +667,7 @@ $(function () {
 	<!-- iCheck -->
 	<script src="resources/js/plugins/iCheck/icheck.min.js"></script>
 	<!-- Data picker -->
-	<script
-		src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 	<!-- SUMMERNOTE -->
 	<script src="resources/js/plugins/summernote/summernote.min.js"></script>
 	<script src="resources/js/plugins/footable/footable.all.min.js"></script>
@@ -674,22 +695,59 @@ $(function () {
 		};
 	</script>
 	<script>
+	var fromTimeInput = $('#date_added');
+	var toTimeInput = $('#date_modified');
+	var fromTime = fromTimeInput.val();
+	var toTime = toTimeInput.val();
+
+	fromTimeInput.datepicker({
+	    keyboardNavigation : false,
+	    forceParse : false,
+	    calendarWeeks : true,
+	    autoclose : true,
+	    endDate: toTime
+	});
+	toTimeInput.datepicker({
+	    keyboardNavigation : false,
+	    forceParse : false,
+	    calendarWeeks : true,
+	    autoclose : true,
+	    startDate: fromTime
+	});
+	fromTimeInput.on("changeDate", function (e) {
+	    toTimeInput.datepicker('setStartDate', e.date);
+	});
+	toTimeInput.on("changeDate", function (e) {
+	    fromTimeInput.datepicker('setEndDate', e.date);
+	});
+	</script>
+	
+	<script>
 		$(document).ready(function() {
+			var fromTimeInput = $('#date_added');
+			var toTimeInput = $('#date_modified');
+			var fromTime = fromTimeInput.val();
+			var toTime = toTimeInput.val();
 
-			$('#date_added').datepicker({
-				todayBtn : "linked",
-				keyboardNavigation : false,
-				forceParse : false,
-				calendarWeeks : true,
-				autoclose : true
+			fromTimeInput.datepicker({
+			    keyboardNavigation : false,
+			    forceParse : false,
+			    calendarWeeks : true,
+			    autoclose : true,
+			    endDate: toTime
 			});
-
-			$('#date_modified').datepicker({
-				todayBtn : "linked",
-				keyboardNavigation : false,
-				forceParse : false,
-				calendarWeeks : true,
-				autoclose : true
+			toTimeInput.datepicker({
+			    keyboardNavigation : false,
+			    forceParse : false,
+			    calendarWeeks : true,
+			    autoclose : true,
+			    startDate: fromTime
+			});
+			fromTimeInput.on("changeDate", function (e) {
+			    toTimeInput.datepicker('setStartDate', e.date);
+			});
+			toTimeInput.on("changeDate", function (e) {
+			    fromTimeInput.datepicker('setEndDate', e.date);
 			});
 
 		});

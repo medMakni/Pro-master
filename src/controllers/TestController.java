@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.task.Task;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import servicesIn.LoginService;
@@ -38,7 +36,7 @@ public class TestController {
 		RestTemplate restTemplate = new RestTemplate();
 		Map<String, Object> mapUid = new HashMap<String, Object>();
 		mapUid.put("uid", principal.getName());
-		System.out.println("loool");
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getCredentials());
 		@SuppressWarnings("unchecked")
 		Map<String,Object> roles=restTemplate.getForObject(SERVER_URI+"/getUserRole"+"?uid=" + principal.getName(), HashMap.class);
 		@SuppressWarnings("unchecked")
