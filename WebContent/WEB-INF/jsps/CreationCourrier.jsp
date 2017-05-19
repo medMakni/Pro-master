@@ -122,7 +122,7 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> <span
 							class="nav-label">Courriers</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivées.html">Courriers Arrivées</a></li>
+							<li><a href="${pageContext.request.contextPath}/CourriersArrivées">Courriers Arrivées</a></li>
 							<li><a href="CourriersDéparts.html">Courriers Sorties</a></li>
 							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
 

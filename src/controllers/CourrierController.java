@@ -44,29 +44,20 @@ System.out.println(file.getOriginalFilename());
 				   map.add("listePiecesJointes", resource);
 				   System.out.println("hhhh"+map.get("listePiecesJointes"));
 
-					//System.out.println(map.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 		
-
-			
 		}
 		   map.add("objet", objet);
 
-		
-		//map.put("files", files1);
-		//map.put("names", files2);
-		//System.out.println(map.get("files").toString());
+
 		RestTemplate restTemplate = new RestTemplate();
 		
-		
 		restTemplate.postForObject(SERVER_URI+"/créerCourriers", map, Void.class);
-		//System.out.println(a);
-
-		//message = message + ms.encodeFileToBase64Binary( bytes);
-		//rval.put("success",message);
 
 		return true;
 	}
+	
+		
 }
