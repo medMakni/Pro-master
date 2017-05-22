@@ -81,7 +81,7 @@
 					<li><a href="resources/mailbox.html"><i
 							class="fa fa-bar-chart-o"></i></i> <span class="nav-label">Statistique
 						</span></a></li>
-						</ul>
+				</ul>
 			</div>
 		</nav>
 		<div id="page-wrapper" class="gray-bg">
@@ -275,18 +275,30 @@
 										</tr>
 									</thead>
 									<tbody>
-									
-										<c:forEach items="${allCourrier}" var="map">
-												
-											<tr class="gradeX">
-												<c:forEach items="${map}" var="entry">
-											        <td>
-											        ${entry.value}<br>
-											        </td>
+										<c:choose>
+											<c:when test="${allCourrier != null}">
+												<c:forEach items="${allCourrier}" var="map">
+													<tr class="gradeX">
+														<c:forEach items="${map}" var="entry">
+															<td>${entry.value}<br>
+															</td>
+														</c:forEach>
+													</tr>
 												</c:forEach>
-											</tr>
-										</c:forEach>
-										
+											</c:when>
+											<c:when test="${finishedCourrier != null}">
+												<c:forEach items="${finishedCourrier}" var="map">
+													<tr class="gradeX">
+														<c:forEach items="${map}" var="entry">
+															<td>${entry.value}<br>
+															</td>
+														</c:forEach>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise></c:otherwise>
+										</c:choose>
+
 									</tbody>
 									<tfoot>
 										<tr>

@@ -335,7 +335,7 @@
 													Courrier</label>
 												<div class="input-group date">
 													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i></span><input id="date_added"
+														class="fa fa-calendar"></i></span><input id="date_added" name="dateIn"
 														type="text" class="form-control" value="03/04/2014">
 												</div>
 											</div>
@@ -346,7 +346,7 @@
 													Arrivée</label>
 												<div class="input-group date">
 													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i></span><input id="date_modified"
+														class="fa fa-calendar"></i></span><input id="date_modified" name="dateOut"
 														type="text" class="form-control" value="03/06/2014">
 												</div>
 											</div>

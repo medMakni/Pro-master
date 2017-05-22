@@ -22,11 +22,11 @@ public class CourrierController {
 	@RequestMapping(value = "/sendCourrierData", method = RequestMethod.POST , produces="application/json")
 	public @ResponseBody
 	Boolean getCourrierObject(
-			@RequestParam("name") MultipartFile[] files , @RequestParam("objet") Object objet) {
+			@RequestParam("name") MultipartFile[] files , @RequestParam("objet") Object objet ,@RequestParam("dateIn")Object dateIn,@RequestParam("dateOut")Object dateOut) {
 
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 		List<Object> files1 = new ArrayList<>();
-
+System.out.println(dateIn+"n     "+dateOut);
 		for (int i = 0; i < files.length; i++) {
 			MultipartFile file = files[i];
 
@@ -50,6 +50,10 @@ System.out.println(file.getOriginalFilename());
 		
 		}
 		   map.add("objet", objet);
+		   map.add("dateIn", objet);
+
+		   map.add("dateOut", objet);
+
 
 
 		RestTemplate restTemplate = new RestTemplate();
