@@ -10,11 +10,11 @@
 
     <title>INSPINIA | Mailbox</title>
 
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="resources/css/animate.css" rel="stylesheet">
-    <link href="resources/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/animate.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,7 +27,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/resources/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
@@ -272,7 +272,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/resources/img/a7.jpg">
                                 </a>
                                 <div class="media-body">
                                     <small class="pull-right">46h ago</small>
@@ -285,7 +285,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                    <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/resources/img/a4.jpg">
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right text-navy">5h ago</small>
@@ -298,7 +298,7 @@
                         <li>
                             <div class="dropdown-messages-box">
                                 <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                    <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/resources/img/profile.jpg">
                                 </a>
                                 <div class="media-body ">
                                     <small class="pull-right">23h ago</small>
@@ -447,7 +447,7 @@
                                         <span class="corner"></span>
 
                                         <div class="image">
-                                            <img alt="image" class="img-responsive" src="resources/img/p1.jpg">
+                                            <img alt="image" class="img-responsive" src="${pageContext.request.contextPath}/resources/img/p1.jpg">
                                         </div>
                                         <div class="file-name">
                                             Italy street.jpg
@@ -464,7 +464,7 @@
                                         <span class="corner"></span>
 
                                         <div class="image">
-    										<iframe src="resources/img/LM_MAKNI_Mohamed Wassim.pdf"></iframe>
+    										<iframe src="${pageContext.request.contextPath}/resources/img/LM_MAKNI_Mohamed Wassim.pdf"></iframe>
                                         </div>
                                         <div class="file-name">
                                             My feel.png
@@ -503,17 +503,18 @@
         </div>
 
     <!-- Mainly scripts -->
-    <script src="resources/js/jquery-2.1.1.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
+
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="resources/js/inspinia.js"></script>
-    <script src="resources/js/plugins/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/inspinia.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script>
 
     <!-- iCheck -->
-    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/iCheck/icheck.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.i-checks').iCheck({

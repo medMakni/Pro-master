@@ -94,7 +94,7 @@
 						<form role="search" class="navbar-form-custom"
 							action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
 							<div class="form-group">
-								<input type="text" placeholder="Search for somethingresources."
+								<input type="text" placeholder="Search for something"
 									class="form-control" name="top-search" id="top-search">
 							</div>
 						</form>
@@ -107,48 +107,39 @@
 								class="fa fa-envelope"></i> <span class="label label-warning">16</span>
 						</a>
 							<ul class="dropdown-menu dropdown-messages">
-								<li>
-									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left"> <img
-											alt="image" class="img-circle" src="resources/img/a7.jpg">
-										</a>
-										<div class="media-body">
-											<small class="pull-right">46h ago</small> <strong>Mike
-												Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-											<small class="text-muted">3 days ago at 7:58 pm -
-												10.06.2014</small>
+								<c:forEach items="${allCourrier}" var="map">
+
+									<li>
+										<div class="dropdown-messages-box">
+											<a href="resources/profile.html" class="pull-left"> <img
+												alt="image" class="img-circle" src="resources/img/a7.jpg">
+											</a>
+											<div class="media-body">
+												<c:forEach items="${map}" var="entry">
+													<c:if test="${entry.key=='expéditeur'}">			
+															${entry.value}.<br>
+														<small class="pull-right">46h ago</small>
+														<small class="text-muted"><c:out value="${date}" /></small>
+													</c:if>
+													<c:if test="${entry.key=='date'}">
+														<br>
+														<c:set var="date" scope="session" value="${entry.value}" />
+
+													</c:if>
+
+
+
+
+												</c:forEach>
+
+											</div>
 										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left"> <img
-											alt="image" class="img-circle" src="resources/img/a4.jpg">
-										</a>
-										<div class="media-body ">
-											<small class="pull-right text-navy">5h ago</small> <strong>Chris
-												Johnatan Overtunk</strong> started following <strong>Monica
-												Smith</strong>. <br> <small class="text-muted">Yesterday
-												1:21 pm - 11.06.2014</small>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="dropdown-messages-box">
-										<a href="resources/profile.html" class="pull-left"> <img
-											alt="image" class="img-circle"
-											src="resources/img/profile.jpg">
-										</a>
-										<div class="media-body ">
-											<small class="pull-right">23h ago</small> <strong>Monica
-												Smith</strong> love <strong>Kim Smith</strong>. <br> <small
-												class="text-muted">2 days ago at 2:30 am -
-												11.06.2014</small>
-										</div>
-									</div>
-								</li>
+									</li>
+
+
+									<li class="divider"></li>
+
+								</c:forEach>
 								<li class="divider"></li>
 								<li>
 									<div class="text-center link-block">
@@ -263,14 +254,17 @@
 								<input type="text" class="form-control input-sm m-b-xs"
 									id="filter" placeholder="Search in table">
 
-								<table class="footable table table-stripped" data-page-size="8"
-									data-filter=#filter>
+								<table class="table table-hover footable" data-page-size="8"
+									data-filter=#filter data-filter-control="true">
 									<thead>
 										<tr>
 											<th>Expéditeur</th>
 											<th>Société</th>
-											<th data-hide="phone,tablet">Objet</th>
 											<th data-hide="phone,tablet">Date</th>
+											<th>Objet</th>
+											
+
+
 
 										</tr>
 									</thead>
@@ -278,10 +272,26 @@
 										<c:choose>
 											<c:when test="${allCourrier != null}">
 												<c:forEach items="${allCourrier}" var="map">
-													<tr class="gradeX">
+													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
-															<td>${entry.value}<br>
-															</td>
+
+															<c:if test="${entry.key=='expéditeur'}">
+																<td>${entry.value}//<c:out value="${map['idCourrier']}"/></td>
+
+															</c:if>
+															<c:if test="${entry.key=='date'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+															<c:if test="${entry.key=='objet'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+															<c:if test="${entry.key=='société'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+
 														</c:forEach>
 													</tr>
 												</c:forEach>
@@ -290,8 +300,24 @@
 												<c:forEach items="${finishedCourrier}" var="map">
 													<tr class="gradeX">
 														<c:forEach items="${map}" var="entry">
-															<td>${entry.value}<br>
-															</td>
+
+															<c:if test="${entry.key=='expéditeur'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+															<c:if test="${entry.key=='date'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+															<c:if test="${entry.key=='objet'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+															<c:if test="${entry.key=='société'}">
+																<td>${entry.value}</td>
+
+															</c:if>
+
 														</c:forEach>
 													</tr>
 												</c:forEach>
@@ -352,23 +378,67 @@
 
 		});
 	</script>
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+	    $(".clickable-row").click(function() {
+	        window.location = $(this).data("href");
+	    });
+	});
+	</script>
+	<script>
+		var fromTimeInput = $('#date_added');
+		var toTimeInput = $('#date_modified');
+		var fromTime = fromTimeInput.val();
+		var toTime = toTimeInput.val();
+
+		fromTimeInput.datepicker({
+			keyboardNavigation : false,
+			forceParse : false,
+			calendarWeeks : true,
+			autoclose : true,
+			endDate : toTime
+		});
+		toTimeInput.datepicker({
+			keyboardNavigation : false,
+			forceParse : false,
+			calendarWeeks : true,
+			autoclose : true,
+			startDate : fromTime
+		});
+		fromTimeInput.on("changeDate", function(e) {
+			toTimeInput.datepicker('setStartDate', e.date);
+		});
+		toTimeInput.on("changeDate", function(e) {
+			fromTimeInput.datepicker('setEndDate', e.date);
+		});
+	</script>
+
 	<script>
 		$(document).ready(function() {
+			var fromTimeInput = $('#date_added');
+			var toTimeInput = $('#date_modified');
+			var fromTime = fromTimeInput.val();
+			var toTime = toTimeInput.val();
 
-			$('#date_added').datepicker({
-				todayBtn : "linked",
+			fromTimeInput.datepicker({
 				keyboardNavigation : false,
 				forceParse : false,
 				calendarWeeks : true,
-				autoclose : true
+				autoclose : true,
+				endDate : toTime
 			});
-
-			$('#date_modified').datepicker({
-				todayBtn : "linked",
+			toTimeInput.datepicker({
 				keyboardNavigation : false,
 				forceParse : false,
 				calendarWeeks : true,
-				autoclose : true
+				autoclose : true,
+				startDate : fromTime
+			});
+			fromTimeInput.on("changeDate", function(e) {
+				toTimeInput.datepicker('setStartDate', e.date);
+			});
+			toTimeInput.on("changeDate", function(e) {
+				fromTimeInput.datepicker('setEndDate', e.date);
 			});
 
 		});

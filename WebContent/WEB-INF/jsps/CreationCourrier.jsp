@@ -93,7 +93,7 @@
 
 		<nav class="navbar-default navbar-static-side" role="navigation">
 			<div class="sidebar-collapse">
-				<ul class="nav metismenu" id="side-menu">
+				<ul class="nav metismenu" id="side-menu">
 					<li class="nav-header">
 						<div class="dropdown profile-element">
 							<span> <img alt="image" class="img-circle"
@@ -404,7 +404,7 @@
 										<label class="col-sm-2 control-label">E-mail:</label>
 
 										<div class="col-sm-10">
-											<input type="text" class="form-control" value="">
+											<input type="text" class="form-control" value="" name="societe">
 										</div>
 									</div>
 									<div class="form-group">

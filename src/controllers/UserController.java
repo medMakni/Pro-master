@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -33,17 +35,24 @@ public class UserController {
 			if(r.get(i).equals("Secrétaire Générale")){
 			@SuppressWarnings("unchecked")
 			List<Map<String, Object>> allCourrier=	restTemplate.getForObject(SERVER_URI + "/listCourriersArrivés", ArrayList.class);
-			System.out.println(allCourrier);
+			System.out.println("eeee"+allCourrier);
 			model.addAttribute("allCourrier", allCourrier);
 			}
 			else {
-				System.out.println("aaaa");
+				System.out.println(principal.getName());
 				@SuppressWarnings("unchecked")
 				List<Map<String, Object>> finishedCourrier=	restTemplate.getForObject(SERVER_URI + "/getListCourriersArrivésParUser" + "?username=" + principal.getName(), ArrayList.class);
-				System.out.println(finishedCourrier);
+				System.out.println("yyyy"+finishedCourrier);
 				model.addAttribute("finishedCourrier", finishedCourrier);
 			}
 		}
 		return "CourriersArrivées";
 	}
+	@RequestMapping(value = "/mail_detail", method = RequestMethod.GET)
+	public String showCourrierDetail(@RequestParam("id") String id) {
+		
+		//System.out.println("idtt="+id);
+		return "mail_detail";
+	}
+
 }
