@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 
 
@@ -20,11 +22,20 @@
 <s:url value="resources/css/plugins/datapicker/datepicker3.css"
 	var="datepicker" />
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
 <link href="${bootstrapCss}" rel="stylesheet">
 <link href="${datepicker}" rel="stylesheet">
@@ -101,8 +112,12 @@
 							</span> <a data-toggle="dropdown" class="dropdown-toggle"
 								href="resources/#"> <span class="clear"> <span
 									class="block m-t-xs"> <strong class="font-bold">${realName }</strong>
-								</span> <span class="text-muted text-xs block">${roles},${directions}
-										<b class="caret"></b>
+								</span> <span class="text-muted text-xs block"> 
+								<c:forEach items="${roles}" var="entry">
+									<c:out value="${entry}" />
+								</c:forEach> <c:forEach items="${directions}" var="direction">
+									<c:out value="${direction}" />
+								</c:forEach> <b class="caret"></b>
 								</span>
 							</span>
 							</a>
@@ -122,7 +137,9 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> <span
 							class="nav-label">Courriers</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="${pageContext.request.contextPath}/CourriersArrivées">Courriers Arrivées</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/CourriersArrivées">Courriers
+									Arrivées</a></li>
 							<li><a href="CourriersDéparts.html">Courriers Sorties</a></li>
 							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
 
@@ -259,7 +276,8 @@
 					</ul>
 				</nav>
 
-				<form method="POST" action="sendCourrierData" enctype="multipart/form-data">
+				<form method="POST" action="sendCourrierData"
+					enctype="multipart/form-data">
 					<div class="col-lg-12">
 						<div class="ibox float-e-margins">
 							<div class="ibox-title">
@@ -335,8 +353,9 @@
 													Courrier</label>
 												<div class="input-group date">
 													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i></span><input id="date_added" name="dateIn"
-														type="text" class="form-control" value="03/04/2014">
+														class="fa fa-calendar"></i></span><input id="date_added"
+														name="dateIn" type="text" class="form-control"
+														value="03/04/2014">
 												</div>
 											</div>
 										</div>
@@ -346,8 +365,9 @@
 													Arrivée</label>
 												<div class="input-group date">
 													<span class="input-group-addon"><i
-														class="fa fa-calendar"></i></span><input id="date_modified" name="dateOut"
-														type="text" class="form-control" value="03/06/2014">
+														class="fa fa-calendar"></i></span><input id="date_modified"
+														name="dateOut" type="text" class="form-control"
+														value="03/06/2014">
 												</div>
 											</div>
 										</div>
@@ -404,7 +424,8 @@
 										<label class="col-sm-2 control-label">E-mail:</label>
 
 										<div class="col-sm-10">
-											<input type="text" class="form-control" value="" name="societe">
+											<input type="text" class="form-control" value=""
+												name="societe">
 										</div>
 									</div>
 									<div class="form-group">
@@ -695,33 +716,33 @@
 		};
 	</script>
 	<script>
-	var fromTimeInput = $('#date_added');
-	var toTimeInput = $('#date_modified');
-	var fromTime = fromTimeInput.val();
-	var toTime = toTimeInput.val();
+		var fromTimeInput = $('#date_added');
+		var toTimeInput = $('#date_modified');
+		var fromTime = fromTimeInput.val();
+		var toTime = toTimeInput.val();
 
-	fromTimeInput.datepicker({
-	    keyboardNavigation : false,
-	    forceParse : false,
-	    calendarWeeks : true,
-	    autoclose : true,
-	    endDate: toTime
-	});
-	toTimeInput.datepicker({
-	    keyboardNavigation : false,
-	    forceParse : false,
-	    calendarWeeks : true,
-	    autoclose : true,
-	    startDate: fromTime
-	});
-	fromTimeInput.on("changeDate", function (e) {
-	    toTimeInput.datepicker('setStartDate', e.date);
-	});
-	toTimeInput.on("changeDate", function (e) {
-	    fromTimeInput.datepicker('setEndDate', e.date);
-	});
+		fromTimeInput.datepicker({
+			keyboardNavigation : false,
+			forceParse : false,
+			calendarWeeks : true,
+			autoclose : true,
+			endDate : toTime
+		});
+		toTimeInput.datepicker({
+			keyboardNavigation : false,
+			forceParse : false,
+			calendarWeeks : true,
+			autoclose : true,
+			startDate : fromTime
+		});
+		fromTimeInput.on("changeDate", function(e) {
+			toTimeInput.datepicker('setStartDate', e.date);
+		});
+		toTimeInput.on("changeDate", function(e) {
+			fromTimeInput.datepicker('setEndDate', e.date);
+		});
 	</script>
-	
+
 	<script>
 		$(document).ready(function() {
 			var fromTimeInput = $('#date_added');
@@ -730,24 +751,24 @@
 			var toTime = toTimeInput.val();
 
 			fromTimeInput.datepicker({
-			    keyboardNavigation : false,
-			    forceParse : false,
-			    calendarWeeks : true,
-			    autoclose : true,
-			    endDate: toTime
+				keyboardNavigation : false,
+				forceParse : false,
+				calendarWeeks : true,
+				autoclose : true,
+				endDate : toTime
 			});
 			toTimeInput.datepicker({
-			    keyboardNavigation : false,
-			    forceParse : false,
-			    calendarWeeks : true,
-			    autoclose : true,
-			    startDate: fromTime
+				keyboardNavigation : false,
+				forceParse : false,
+				calendarWeeks : true,
+				autoclose : true,
+				startDate : fromTime
 			});
-			fromTimeInput.on("changeDate", function (e) {
-			    toTimeInput.datepicker('setStartDate', e.date);
+			fromTimeInput.on("changeDate", function(e) {
+				toTimeInput.datepicker('setStartDate', e.date);
 			});
-			toTimeInput.on("changeDate", function (e) {
-			    fromTimeInput.datepicker('setEndDate', e.date);
+			toTimeInput.on("changeDate", function(e) {
+				fromTimeInput.datepicker('setEndDate', e.date);
 			});
 
 		});

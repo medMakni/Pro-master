@@ -21,10 +21,10 @@ public class UserController {
 
 	final String SERVER_URI = "http://localhost:8081/BackEndFinalVersion";
 	private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
+	RestTemplate restTemplate = new RestTemplate();
 
 	@RequestMapping(value = "/CourriersArrivées", method = RequestMethod.GET)
 	public String showHome(Principal principal,Model model) {
-		RestTemplate restTemplate = new RestTemplate();
 		@SuppressWarnings("unchecked")
 		Map<String, Object> roles = restTemplate
 				.getForObject(SERVER_URI + "/getUserRole" + "?uid=" + principal.getName(), HashMap.class);
@@ -49,9 +49,20 @@ public class UserController {
 		return "CourriersArrivées";
 	}
 	@RequestMapping(value = "/mail_detail", method = RequestMethod.GET)
-	public String showCourrierDetail(@RequestParam("id") String id) {
-		
-		//System.out.println("idtt="+id);
+	public String showCourrierDetail(@RequestParam("id") String id,Model model) {
+		@SuppressWarnings("unchecked")
+		Map<String, Object> selectedCourrier=	restTemplate.getForObject(SERVER_URI + "/getCourrierDetails"+"?id="+id, HashMap.class);
+		model.addAttribute("selectedCourrier", selectedCourrier);
+		System.out.println("aaa"+selectedCourrier);
+		return "mail_detail";
+	}
+	
+	@RequestMapping(value = "/réviserCourrier", method = RequestMethod.POST)
+	public String réviserCourrier(Model model,@RequestParam("idCourrier") String id,@RequestParam("isValidated") String isValidated) {
+		Map <String,Object> params=new HashMap<String,Object>();
+		params.put("idCourrier", id);
+		params.put("isValidated", isValidated);
+		restTemplate.postForObject(SERVER_URI + "/réviser", params, Void.class);
 		return "mail_detail";
 	}
 
