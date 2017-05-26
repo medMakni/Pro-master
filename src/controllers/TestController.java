@@ -82,7 +82,7 @@ public class TestController {
 
 			model.addAttribute("username", username);
 
-			return "next";
+			return "home";
 
 		}
 	}

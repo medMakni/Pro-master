@@ -297,8 +297,8 @@
 												</c:forEach>
 											</c:when>
 											<c:when test="${finishedCourrier != null}">
-												<c:forEach items="${finishedCourrier}" var="map">
-													<tr class="gradeX">
+												<c:forEach items="${finishedCourrier}" var="map" >
+													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
 
 															<c:if test="${entry.key=='expéditeur'}">

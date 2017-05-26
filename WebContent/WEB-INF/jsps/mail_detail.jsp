@@ -9,7 +9,11 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="_csrf_param" content="${_csrf.parameterName}"/>
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>INSPINIA | Mailbox</title>
 
 <link
@@ -403,7 +407,7 @@
 							<c:out value="${selectedCourrier}" />
 							<c:set var="bas" value="${selectedCourrier['listePiécesJointes'][0] }" />    
 
-<c:out value="${selectedCourrier['idCourrier']}" />
+							<c:out value="${selectedCourrier['idCourrier']}" />
 							<h3>Hello Jonathan!</h3>
 							dummy text of the printing and typesetting industry. <strong>Lorem
 								Ipsum has been the industry's</strong> standard dummy text ever since the
@@ -512,11 +516,11 @@
 						<!-- /.container -->
 						<div class="mail-body text-right tooltip-demo">
 							<button class="btn btn-primary "
-								onclick="location.href='${pageContext.request.contextPath}/réviserCourrier?id=<c:out value="${selectedCourrier['idCourrier']}" />&isValidated=<c:out value="true" />'"
+								onclick="sendDataWithJson(true);"
 								type="button">
 								<i class="fa fa-check"></i>&nbsp;approuver
 							</button>
-							<button class="btn btn-primary " type="button">
+							<button class="btn btn-primary " onclick="sendDataWithJson(false);" type="button">
 								<i class="fa fa-times"></i>&nbsp;rejeter
 							</button>
 
@@ -567,6 +571,29 @@
 				radioClass : 'iradio_square-green',
 			});
 		});
+	</script>
+	<script type="text/javascript">
+	function success(data){
+		alert(data.text);
+	}
+	function error(data){
+		alert("error");
+	}
+	function sendDataWithJson(isValidated){
+
+		$.ajax({
+		    type: 'POST',
+		    url: '<c:url value="/réviserCourrier" />',
+		    data: JSON.stringify({"idCourrier":<c:out value="${selectedCourrier['idCourrier']}" />,"isValidated":isValidated}),
+		    success:success,
+		    error:error,
+		    contentType: "application/json; charset=utf-8",
+		    dataType: "json"
+		    
+		});
+
+
+		}
 	</script>
 </body>
 

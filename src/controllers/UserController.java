@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,12 +59,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/réviserCourrier", method = RequestMethod.POST)
-	public String réviserCourrier(Model model,@RequestParam("idCourrier") String id,@RequestParam("isValidated") String isValidated) {
+	public String réviserCourrier(Model model,@RequestBody Map<String, Object> data) {
 		Map <String,Object> params=new HashMap<String,Object>();
-		params.put("idCourrier", id);
+		String idCourrier=(String) data.get("idCourrier").toString();
+		boolean isValidated=(boolean) data.get("isValidated");
+		params.put("idCourrier", idCourrier);
 		params.put("isValidated", isValidated);
+		System.out.println(params);
+
 		restTemplate.postForObject(SERVER_URI + "/réviser", params, Void.class);
-		return "mail_detail";
+		System.out.println("revisité");
+		return "home";
 	}
 
 }
