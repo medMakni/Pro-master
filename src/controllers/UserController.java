@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +10,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +54,10 @@ public class UserController {
 	@RequestMapping(value = "/mail_detail", method = RequestMethod.GET)
 	public String showCourrierDetail(@RequestParam("id") String id,Model model) {
 		@SuppressWarnings("unchecked")
-		Map<String, Object> selectedCourrier=	restTemplate.getForObject(SERVER_URI + "/getCourrierDetails"+"?id="+id, HashMap.class);
+		Map<String, Object> selectedCourrier=restTemplate.getForObject(SERVER_URI + "/getCourrierDetails"+"?id="+id, HashMap.class);
+		//ByteArrayResource b=(ByteArrayResource) selectedCourrier.get("resources");
+		//System.out.println(b);
+		 
 		model.addAttribute("selectedCourrier", selectedCourrier);
 		System.out.println("aaa"+selectedCourrier);
 		return "mail_detail";

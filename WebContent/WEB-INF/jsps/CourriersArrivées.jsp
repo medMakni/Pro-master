@@ -274,24 +274,18 @@
 												<c:forEach items="${allCourrier}" var="map">
 													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
-
 															<c:if test="${entry.key=='expéditeur'}">
 																<td>${entry.value}//<c:out value="${map['idCourrier']}"/></td>
-
 															</c:if>
 															<c:if test="${entry.key=='date'}">
 																<td>${entry.value}</td>
-
 															</c:if>
 															<c:if test="${entry.key=='objet'}">
 																<td>${entry.value}</td>
-
 															</c:if>
 															<c:if test="${entry.key=='société'}">
 																<td>${entry.value}</td>
-
 															</c:if>
-
 														</c:forEach>
 													</tr>
 												</c:forEach>
@@ -300,31 +294,24 @@
 												<c:forEach items="${finishedCourrier}" var="map" >
 													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
-
 															<c:if test="${entry.key=='expéditeur'}">
 																<td>${entry.value}</td>
-
 															</c:if>
 															<c:if test="${entry.key=='date'}">
 																<td>${entry.value}</td>
-
 															</c:if>
 															<c:if test="${entry.key=='objet'}">
 																<td>${entry.value}</td>
-
 															</c:if>
 															<c:if test="${entry.key=='société'}">
 																<td>${entry.value}</td>
-
 															</c:if>
-
 														</c:forEach>
 													</tr>
 												</c:forEach>
 											</c:when>
 											<c:otherwise></c:otherwise>
 										</c:choose>
-
 									</tbody>
 									<tfoot>
 										<tr>
