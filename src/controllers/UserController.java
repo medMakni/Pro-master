@@ -11,6 +11,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,14 +57,27 @@ public class UserController {
 	public String showCourrierDetail(@RequestParam("id") String id,Model model) {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> selectedCourrier=restTemplate.getForObject(SERVER_URI + "/getCourrierDetails"+"?id="+id, HashMap.class);
-		//ByteArrayResource b=(ByteArrayResource) selectedCourrier.get("resources");
-		//System.out.println(b);
-		 
+
+		@SuppressWarnings("unchecked")
+		ResponseEntity<String> sCourrier=restTemplate.getForEntity(SERVER_URI + "/downloadPDFFile", String.class);
+		//System.out.println(selectedCourrier.get("resources").getClass());
+		System.out.println("bbbb"+sCourrier.getBody());
 		model.addAttribute("selectedCourrier", selectedCourrier);
+		//model.addAttribute("selectedCourrier", sCourrier);
+
 		System.out.println("aaa"+selectedCourrier);
+		return "mail_detail"; 
+	}
+	@RequestMapping(value = "/mail_test", method = RequestMethod.GET)
+	public String showCourrierDetail(Model model) {
+		@SuppressWarnings("unchecked")
+		ResponseEntity<String> sCourrier=restTemplate.getForEntity(SERVER_URI + "/downloadPDFFile", String.class);
+		//System.out.println(selectedCourrier.get("resources").getClass());
+		System.out.println("bbbb"+sCourrier.getBody());
+
 		return "mail_detail";
 	}
-	
+
 	@RequestMapping(value = "/réviserCourrier", method = RequestMethod.POST)
 	public String réviserCourrier(Model model,@RequestBody Map<String, Object> data) {
 		Map <String,Object> params=new HashMap<String,Object>();

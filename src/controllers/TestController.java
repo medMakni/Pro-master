@@ -55,7 +55,7 @@ public class TestController {
 	 String showTest() {
 
 
-		return "mail_detail";
+		return "stats";
 	}
 	@RequestMapping(value = "/mail", method = RequestMethod.GET)
 	public
