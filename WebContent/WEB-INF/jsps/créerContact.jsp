@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/graph_morris.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:26 GMT -->
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/form_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:43:07 GMT -->
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Morris.js Charts</title>
-		
+    <title>INSPINIA | Basic Form</title>
+
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- morris -->
-    <link href="resources/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-
+    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="resources/css/animate.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
+
+    <link href="resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
 </head>
 
@@ -64,11 +61,11 @@
                 <li>
                     <a href="resources/layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="resources/#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="resources/graph_flot.html">Flot Charts</a></li>
-                        <li class="active"><a href="resources/graph_morris.html">Morris.js Charts</a></li>
+                        <li><a href="resources/graph_morris.html">Morris.js Charts</a></li>
                         <li><a href="resources/graph_rickshaw.html">Rickshaw Charts</a></li>
                         <li><a href="resources/graph_chartjs.html">Chart.js</a></li>
                         <li><a href="resources/graph_chartist.html">Chartist</a></li>
@@ -92,10 +89,10 @@
                 <li>
                     <a href="resources/widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="resources/#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="resources/form_basic.html">Basic form</a></li>
+                    <ul class="nav nav-second-level">
+                        <li class="active"><a href="resources/form_basic.html">Basic form</a></li>
                         <li><a href="resources/form_advanced.html">Advanced Plugins</a></li>
                         <li><a href="resources/form_wizard.html">Wizard</a></li>
                         <li><a href="resources/form_file_upload.html">File Upload</a></li>
@@ -379,16 +376,16 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Morris.js Charts</h2>
+                    <h2>Basic Form</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="resources/index-2.html">Home</a>
                         </li>
                         <li>
-                            <a>Graphs</a>
+                            <a>Forms</a>
                         </li>
                         <li class="active">
-                            <strong>Morris.js Charts </strong>
+                            <strong>Basic Form</strong>
                         </li>
                     </ol>
                 </div>
@@ -396,127 +393,63 @@
 
                 </div>
             </div>
-        <div class="wrapper wrapper-content animated fadeInRight" >
+        <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-                
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Bar Chart Example </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="resources/#">Config option 1</a>
-                                </li>
-                                <li><a href="resources/#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div id="morris-bar-chart"></div>
-                    </div>
-                </div>
-            </div>
-            </div>
-			
-         <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Bar Chart Example </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="resources/#">Config option 1</a>
-                                </li>
-                                <li><a href="resources/#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div id="morris-bar-societe"></div>
-                    </div>
-                </div>
-            </div>
-            <c:forEach items="${nbreFiniParDir}" var="entry">				
-            <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>le nombre de courriers actives pour la ${entry.key} </h5>
+                            <h5>All form elements <small>With custom checkbox and radion elements.</small></h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
+                                    <li><a href="resources/#">Config option 1</a>
                                     </li>
-                                    <li><a href="#">Config option 2</a>
+                                    <li><a href="resources/#">Config option 2</a>
                                     </li>
                                 </ul>
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
-                        </div>
+                        </div> 
                         <div class="ibox-content">
-                            <div id="morris-donut-chart-active-${entry.key}" ></div>
-                        </div>
-                    </div>
-                    </div>
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>le nombre de courriers finis pour la ${entry.key}</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div id="morris-donut-chart-finished-${entry.key}" ></div>
+                            <form method="POST" class="form-horizontal" action="insertContact">
+                                <div class="form-group"><label class="col-sm-2 control-label">Nom</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="nom"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">E-mail</label>
+
+                                    <div class="col-sm-10"><input type="email" class="form-control" name="email"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Téléphone</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="telephone"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Adresse</label>
+
+                                    <div class="col-sm-10"><input type="text" class="form-control" name="adresse"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-white" type="submit">Cancel</button>
+                                        <button class="btn btn-primary" type="submit">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            </c:forEach>
-            </div>
-
-
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -531,82 +464,28 @@
         </div>
 
 
-
     <!-- Mainly scripts -->
     <script src="resources/js/jquery-2.1.1.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Morris -->
-    <script src="resources/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="resources/js/plugins/morris/morris.js"></script>
-
     <!-- Custom and plugin javascript -->
     <script src="resources/js/inspinia.js"></script>
     <script src="resources/js/plugins/pace/pace.min.js"></script>
-<script>
-Morris.Bar({
-  element: 'morris-bar-chart',
-  data: [
-    { y: 'courriers arrivees', a: "${nbreactif['courriersArrivés']}", b: "${nbrefini['courriersArrivés']}" },
-    { y: 'courriers sorties', a: "${nbreactif['courriersSorties']}",  b: "${nbreactif['courriersSorties']}" },
-    { y: 'courriers internes', a: "${nbreactif['courriersInternes']}",  b: "${nbreactif['courriersInternes']}" }
-  ],
-  xkey: 'y',
-  ykeys: ['a', 'b'],
-  labels: ['courriers actives', 'courriers finis'],
-  hideHover: 'auto',
-  barColors: ['#1ab394','#cacaca']
-});
-</script>
-<script>
-Morris.Bar({
-  element: 'morris-bar-societe',
-  data: [
-    { y: 'soc1', a: 100 },
-    { y: 'soc2', a: 75 },
-    { y: 'soc3', a: 65 },
-    { y: 'soc4', a: 55 },
-    { y: 'soc5', a: 50 }
-  ],
-  xkey: 'y',
-  ykeys: ['a'],
-  labels: ['courriers actives'],
-  hideHover: 'auto',
-  barColors: ['#1ab394']
-});
-</script>
- <c:forEach items="${nbreFiniParDir}" var="entry">				
 
-<script type="text/javascript">
-Morris.Donut({
-	  element: 'morris-donut-chart-active-${entry.key}',
-	  data: [
-	    {label: 'courriers arrivees', value: "${entry.value}"},
-	    {label: 'courriers sorties', value: 3},
-	    {label: 'courriers internes', value: 2}
-	  ],
-	  colors: ['#1ab394','#cacaca','#EBEDEF'],
-	});
-</script>
-</c:forEach>
- <c:forEach items="${nbreActiveParDir}" var="entry">				
-
-<script type="text/javascript">
-Morris.Donut({
-	  element: 'morris-donut-chart-finished-${entry.key}',
-	  data: [
-	    {label: 'courriers arrivees', value: "${entry.value}"},
-	    {label: 'courriers sorties', value: 1},
-	    {label: 'courriers internes', value: 2}
-	  ],
-	colors: ['#1ab394','#cacaca','#EBEDEF'],
-	
-	});
-</script>
-</c:forEach>
+    <!-- iCheck -->
+    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
 </body>
 
 
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/form_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:43:08 GMT -->
 </html>

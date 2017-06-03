@@ -595,6 +595,32 @@
 
 		}
 	</script>
+	<div id="doc2"></div>
+<script>
+$( "#cde" ).click(function() {
+alert('here');
+$.ajax({
+    type : "GET",
+    url : 'cde', 
+    contentType: "application/json; charset=utf-8",
+    data: ""
+    ,
+
+    error: function(XMLHttpRequest, error, errorThrown){  
+          alert(error);  
+          alert(errorThrown);  
+          },   
+    success : function(data) {
+     alert('success');
+     alert(data);
+     var obj = $('<object type="application/pdf" width="100%" height="100%" border="2"></object>'); 
+     obj.attr('data','data:application/pdf;base64,'+data);  
+
+    $("#doc2").append(obj);   
+    }
+});
+ });
+</script>
 </body>
 
 

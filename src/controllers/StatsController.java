@@ -1,6 +1,10 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
@@ -11,12 +15,26 @@ public class StatsController {
 	RestTemplate restTemplate = new RestTemplate();
 
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
-	public String showTest() {
+	public String showStats(Model model) {
 
-		int nbreactif = restTemplate.getForObject(SERVER_URI + "/nbreactif", Integer.class);
-		System.out.println("yaya" + nbreactif);
-		int nbreafini = restTemplate.getForObject(SERVER_URI + "/nbrefini", Integer.class);
-		System.out.println("yoyo" + nbreafini);
+		@SuppressWarnings("unchecked")
+		Map<String,Integer> nbreactif = restTemplate.getForObject(SERVER_URI + "/nbreactif", HashMap.class);
+		@SuppressWarnings("unchecked")
+		Map<String,Integer> nbrefini = restTemplate.getForObject(SERVER_URI + "/nbrefini", HashMap.class);
+		
+		@SuppressWarnings("unchecked")
+		Map<String,Integer> nbreFiniParDir = restTemplate.getForObject(SERVER_URI + "/nbreFiniParDir", HashMap.class);
+		@SuppressWarnings("unchecked")
+		Map<String,Integer> nbreActiveParDir = restTemplate.getForObject(SERVER_URI + "/nbreActiveParDir", HashMap.class);
+
+		model.addAttribute("nbreactif", nbreactif);
+		model.addAttribute("nbrefini", nbrefini);
+		model.addAttribute("nbreFiniParDir", nbreFiniParDir);
+		model.addAttribute("nbreActiveParDir", nbreActiveParDir);
+
+
 		return "stats";
+		
+
 	}
 }

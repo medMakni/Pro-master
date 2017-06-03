@@ -59,8 +59,9 @@ public class UserController {
 		Map<String, Object> selectedCourrier=restTemplate.getForObject(SERVER_URI + "/getCourrierDetails"+"?id="+id, HashMap.class);
 
 		@SuppressWarnings("unchecked")
-		ResponseEntity<String> sCourrier=restTemplate.getForEntity(SERVER_URI + "/downloadPDFFile", String.class);
+		ResponseEntity<InputStreamResource> sCourrier=restTemplate.getForEntity(SERVER_URI + "/downloadPDFFile", InputStreamResource.class);
 		//System.out.println(selectedCourrier.get("resources").getClass());
+		
 		System.out.println("bbbb"+sCourrier.getBody());
 		model.addAttribute("selectedCourrier", selectedCourrier);
 		//model.addAttribute("selectedCourrier", sCourrier);
