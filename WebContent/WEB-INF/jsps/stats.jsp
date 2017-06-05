@@ -577,7 +577,7 @@ Morris.Bar({
   barColors: ['#1ab394']
 });
 </script>
- <c:forEach items="${nbreFiniParDir}" var="entry">				
+ <c:forEach items="${nbreActiveParDir}" var="entry">				
 
 <script type="text/javascript">
 Morris.Donut({
@@ -591,7 +591,7 @@ Morris.Donut({
 	});
 </script>
 </c:forEach>
- <c:forEach items="${nbreActiveParDir}" var="entry">				
+ <c:forEach items="${nbreFiniParDir}" var="entry">				
 
 <script type="text/javascript">
 Morris.Donut({

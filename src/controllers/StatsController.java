@@ -18,23 +18,23 @@ public class StatsController {
 	public String showStats(Model model) {
 
 		@SuppressWarnings("unchecked")
-		Map<String,Integer> nbreactif = restTemplate.getForObject(SERVER_URI + "/nbreactif", HashMap.class);
+		Map<String, Integer> nbreactif = restTemplate.getForObject(SERVER_URI + "/nbreactif", HashMap.class);
 		@SuppressWarnings("unchecked")
-		Map<String,Integer> nbrefini = restTemplate.getForObject(SERVER_URI + "/nbrefini", HashMap.class);
-		
+		Map<String, Integer> nbrefini = restTemplate.getForObject(SERVER_URI + "/nbrefini", HashMap.class);
+
 		@SuppressWarnings("unchecked")
-		Map<String,Integer> nbreFiniParDir = restTemplate.getForObject(SERVER_URI + "/nbreFiniParDir", HashMap.class);
+		Map<String, Integer> nbreFiniParDir = restTemplate.getForObject(SERVER_URI + "/nbreFiniParDir", HashMap.class);
 		@SuppressWarnings("unchecked")
-		Map<String,Integer> nbreActiveParDir = restTemplate.getForObject(SERVER_URI + "/nbreActiveParDir", HashMap.class);
+		Map<String, Integer> nbreActiveParDir = restTemplate.getForObject(SERVER_URI + "/nbreActiveParDir",HashMap.class);
 
 		model.addAttribute("nbreactif", nbreactif);
 		model.addAttribute("nbrefini", nbrefini);
 		model.addAttribute("nbreFiniParDir", nbreFiniParDir);
 		model.addAttribute("nbreActiveParDir", nbreActiveParDir);
-
+		System.out.println("actives1"+nbreActiveParDir);
+		System.out.println("finis1"+nbreFiniParDir);
 
 		return "stats";
-		
 
 	}
 }

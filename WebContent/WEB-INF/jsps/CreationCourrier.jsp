@@ -147,9 +147,9 @@
 					<li><a href="#"><i class="fa fa-user"></i> <span
 							class="nav-label">Contactes</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivées.html"><i
+							<li><a href="${pageContext.request.contextPath}/createContact"><i
 									class="fa fa-plus"></i>Créer Contacte</a></li>
-							<li><a href="CourriersDéparts.html"><i
+							<li><a href="${pageContext.request.contextPath}/afficherContacts"><i
 									class="fa fa-list"></i></i>Liste Contacte</a></li>
 
 						</ul></li>
