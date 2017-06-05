@@ -17,9 +17,30 @@ public class ContactsController {
 	final String SERVER_URI = "http://localhost:8081/BackEndFinalVersion";
 	RestTemplate restTemplate = new RestTemplate();
 
+	@RequestMapping(value = "/insertCompany", method = RequestMethod.POST, produces = "application/json")
+	public String insertCompany(@RequestParam("nom") String nom, @RequestParam("email") String email,
+			@RequestParam("telephone") String telephone, @RequestParam("adresse") String adresse, Model model) {
+		Map<String, Object> createCompany = new HashMap<String, Object>();
+		System.out.println("name is" + nom);
+		createCompany.put("nom", nom);
+		createCompany.put("email", email);
+		createCompany.put("adresse", adresse);
+		createCompany.put("telephone", telephone);
+		restTemplate.postForObject(SERVER_URI + "/insertCompany", createCompany, Void.class);
+
+		return "créerSociété";
+
+	}
+	@RequestMapping(value = "/createCompany", method = RequestMethod.GET)
+	public String createCompany(Model model) {
+	
+		return "créerSociété";
+
+	}
+	
 	@RequestMapping(value = "/insertContact", method = RequestMethod.POST, produces = "application/json")
 	public String insertContact(@RequestParam("nom") String nom, @RequestParam("email") String email,
-			@RequestParam("telephone") String telephone, @RequestParam("adresse") String adresse, @RequestParam("idSociete") Object idSociété, Model model) {
+			@RequestParam("telephone") String telephone, @RequestParam("adresse") String adresse, @RequestParam("idSociete") int idSociété, Model model) {
 		Map<String, Object> createContact = new HashMap<String, Object>();
 		System.out.println("name is" + nom);
 		createContact.put("nom", nom);
@@ -70,7 +91,7 @@ public class ContactsController {
 
 		restTemplate.postForObject(SERVER_URI + "/deleteContact", deleteContact, Void.class);
 
-		return "créerContact";
+		return "contactsList";
 
 	}
 	@RequestMapping(value = "/deleteCompany", method = RequestMethod.POST, produces = "application/json")
@@ -85,11 +106,11 @@ public class ContactsController {
 
 		restTemplate.postForObject(SERVER_URI + "/deleteCompany", deleteCompany, Void.class);
 
-		return "créerContact";
+		return "contactsList";
 
 	}
 	@RequestMapping(value = "/updateContact", method = RequestMethod.POST, produces = "application/json")
-	public String updateContact(@RequestParam("idContactUpdate") int idContactUpdate,@RequestParam("nomContact") String nomContact,@RequestParam("emailContact") String emailContact,@RequestParam("telephoneContact") String telephoneContact,@RequestParam("adresseContact") String adresseContact,@RequestParam("idSociete") String idSociete ,Model model) {
+	public String updateContact(@RequestParam("idContactUpdate") int idContactUpdate,@RequestParam("nomContact") String nomContact,@RequestParam("emailContact") String emailContact,@RequestParam("telephoneContact") String telephoneContact,@RequestParam("adresseContact") String adresseContact,@RequestParam("idSociete") int idSociete ,Model model) {
 		Map<String, Object> updateContact = new HashMap<String, Object>();
 		System.out.println("iitt"+idContactUpdate);
 		@SuppressWarnings("unchecked")
@@ -104,10 +125,30 @@ public class ContactsController {
 
 
 
-		//restTemplate.postForObject(SERVER_URI + "/deleteContact", updateContact, Void.class);
+		restTemplate.postForObject(SERVER_URI + "/updateContact", updateContact, Void.class);
 
-		return "créerContact";
+		return "contactsList";
 
 	}
 
+	@RequestMapping(value = "/updateCompany", method = RequestMethod.POST, produces = "application/json")
+	public String updateCompany(@RequestParam("idCompanyUpdate") int idCompanyUpdate,@RequestParam("nomCompany") String nomCompany,@RequestParam("emailCompany") String emailCompany,@RequestParam("telephoneCompany") String telephoneCompany,@RequestParam("adresseCompany") String adresseCompany,Model model) {
+		Map<String, Object> updateContact = new HashMap<String, Object>();
+		System.out.println("iitt"+idCompanyUpdate);
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> allCompanies = restTemplate.getForObject(SERVER_URI + "/findAllCompanies", ArrayList.class);
+		System.out.println("rrr"+allCompanies.get(idCompanyUpdate).get("idSociété"));
+		updateContact.put("idCompany", allCompanies.get(idCompanyUpdate).get("idSociété"));
+		updateContact.put("nomCompany", nomCompany);
+		updateContact.put("emailCompany", emailCompany);
+		updateContact.put("telephoneCompany",telephoneCompany);
+		updateContact.put("adresseCompany", adresseCompany);
+
+System.out.println("uuu"+updateContact);
+
+		restTemplate.postForObject(SERVER_URI + "/updateCompany", updateContact, Void.class);
+
+		return "contactsList";
+
+	}
 }

@@ -484,10 +484,10 @@
                                                             <p>This will be deleted,are you sure? </p>
 
                                                             <form role="form" method="POST" class="form-horizontal" action="deleteContact">
-                                                            <input type="hidden" id="myField" name="idContact"/>
                                                             
 
                                                                 <div>
+                                                                <input type="hidden" id="myField" name="idContact"/>
                                                                     <button type="button" class="btn  btn-white "><strong>Cancel</strong></button>
                                                                     <button class="btn  btn-primary btn-danger" type="submit"><strong>Delete</strong></button>
                                                                 </div>
@@ -534,14 +534,14 @@
 
                                                             <p>Update Company</p>
 
-                                                            <form role="form" method="POST" class="form-horizontal" action="updateContact">
-                                                                <div class="form-group"><label>Nom</label> <input type="text" placeholder="Nom" class="form-control"></div>
-                                                                <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control"></div>
-                                                                <div class="form-group"><label>Téléphone</label> <input type="text" placeholder="Téléphone" class="form-control"></div>
-                                                                <div class="form-group"><label>Adresse</label> <input type="text" placeholder="Adresse" class="form-control"></div>
+                                                            <form role="form" method="POST" class="form-horizontal" action="updateCompany">
+                                                                <div class="form-group"><label>Nom</label> <input type="text" placeholder="Nom" class="form-control" name="nomCompany"></div>
+                                                                <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control" name="emailCompany"></div>
+                                                                <div class="form-group"><label>Téléphone</label> <input type="text" placeholder="Téléphone" class="form-control" name="telephoneCompany"></div>
+                                                                <div class="form-group"><label>Adresse</label> <input type="text" placeholder="Adresse" class="form-control" name="adresseCompany"></div>
                                                                 <div>
 
-
+																	<input type="hidden" id="myField4" name="idCompanyUpdate"/>
                                                                     <button type="button" class="btn  btn-white "><strong>Default</strong></button>
                                                                     <button class="btn  btn-primary" type="submit"><strong>Edit</strong></button>
                                                                 </div>
@@ -565,10 +565,10 @@
                                                             <p>This will be deleted,are you sure? </p>
 
                                                             <form role="form" method="POST" class="form-horizontal" action="deleteCompany">
-                                                            <input type="hidden" id="myField2" name="idSociete"/>
                                                             
 
                                                                 <div>
+                                                                <input type="text" id="myField2" name="idSociete"/>
                                                                     <button type="button" class="btn  btn-white "><strong>Cancel</strong></button>
                                                                     <button class="btn  btn-primary btn-danger" type="submit"><strong>Delete</strong></button>
                                                                 </div>
@@ -665,7 +665,21 @@ function display() {
  
 }
 </script>
+<script type="text/javascript">
+var row_index ;		
 
+$('td').click(function(){
+	   row_index = $(this).parent('tr').index();
+	   var col_index = $(this).index();
+
+	   display();
+	});
+function display() {
+	   console.log(row_index);		
+	   $("#myField4").val(row_index);
+ 
+}
+</script>
 
 
 </body>

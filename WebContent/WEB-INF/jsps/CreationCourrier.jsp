@@ -112,12 +112,12 @@
 							</span> <a data-toggle="dropdown" class="dropdown-toggle"
 								href="resources/#"> <span class="clear"> <span
 									class="block m-t-xs"> <strong class="font-bold">${realName }</strong>
-								</span> <span class="text-muted text-xs block"> 
-								<c:forEach items="${roles}" var="entry">
-									<c:out value="${entry}" />
-								</c:forEach> <c:forEach items="${directions}" var="direction">
-									<c:out value="${direction}" />
-								</c:forEach> <b class="caret"></b>
+								</span> <span class="text-muted text-xs block"> <c:forEach
+											items="${roles}" var="entry">
+											<c:out value="${entry}" />
+										</c:forEach> <c:forEach items="${directions}" var="direction">
+											<c:out value="${direction}" />
+										</c:forEach> <b class="caret"></b>
 								</span>
 							</span>
 							</a>
@@ -147,9 +147,14 @@
 					<li><a href="#"><i class="fa fa-user"></i> <span
 							class="nav-label">Contactes</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="${pageContext.request.contextPath}/createContact"><i
+							<li><a
+								href="${pageContext.request.contextPath}/createContact"><i
 									class="fa fa-plus"></i>Créer Contacte</a></li>
-							<li><a href="${pageContext.request.contextPath}/afficherContacts"><i
+							<li><a
+								href="${pageContext.request.contextPath}/createCompany"><i
+									class="fa fa-plus"></i>Créer société</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/afficherContacts"><i
 									class="fa fa-list"></i></i>Liste Contacte</a></li>
 
 						</ul></li>
