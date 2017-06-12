@@ -384,9 +384,32 @@
 										<span class="label label-info">Origine</span>
 									</p>
 									<br>
+									
+									<br>
+								
 									<div class="form-group">
+
 										<label class="col-sm-2 control-label">Organisme:</label>
 
+										<div class="col-sm-5">
+											<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier à la
+														clientèle</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
+
+											</ul>
+										</div>
+										</div>
+
+
+										<label class="col-sm-1 control-label">Contact:</label>
+
 										<div class="btn-group">
 											<button data-toggle="dropdown"
 												class="btn btn-default dropdown-toggle">
@@ -401,27 +424,6 @@
 											</ul>
 										</div>
 									</div>
-									<br>
-									<div class="form-group">
-
-										<label class="col-sm-2 control-label">Contact:</label>
-										<div class="btn-group">
-											<button data-toggle="dropdown"
-												class="btn btn-default dropdown-toggle">
-												Courrier Normal<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu">
-												<li><a href="#" class="font-bold">Courrier Normal</a></li>
-												<li><a href="#" class="font-bold">Courrier à la
-														clientèle</a></li>
-												<li><a href="#" class="font-bold">Autre</a></li>
-
-											</ul>
-										</div>
-
-
-									</div>
-
 
 
 

@@ -29,7 +29,7 @@ public class CourrierController {
 
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 		List<Object> files1 = new ArrayList<>();
-		System.out.println(dateIn + "n     " + dateOut);
+		System.out.println(files.length + "n     " + dateOut);
 		for (int i = 0; i < files.length; i++) {
 			MultipartFile file = files[i];
 

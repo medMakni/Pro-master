@@ -1,20 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/typography.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:44:55 GMT -->
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/mail_compose.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:41 GMT -->
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Typography</title>
+    <title>INSPINIA | Mailbox</title>
 
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="resources/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="resources/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
     <link href="resources/css/animate.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
+    <link href="resources/css/plugins/select2/select2.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -70,12 +78,12 @@
                         <li><a href="resources/graph_sparkline.html">Sparkline Charts</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="active">
                     <a href="resources/mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                    <ul class="nav nav-second-level collapse">
+                    <ul class="nav nav-second-level">
                         <li><a href="resources/mailbox.html">Inbox</a></li>
                         <li><a href="resources/mail_detail.html">Email view</a></li>
-                        <li><a href="resources/mail_compose.html">Compose email</a></li>
+                        <li class="active"><a href="resources/mail_compose.html">Compose email</a></li>
                         <li><a href="resources/email_template.html">Email templates</a></li>
                     </ul>
                 </li>
@@ -162,10 +170,10 @@
                         <li><a href="resources/tour.html">Tour</a></li>
                     </ul>
                 </li>
-                <li class="active">
+                <li>
                     <a href="resources/#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li class="active"><a href="resources/typography.html">Typography</a></li>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="resources/typography.html">Typography</a></li>
                         <li><a href="resources/icons.html">Icons</a></li>
                         <li><a href="resources/draggable_panels.html">Draggable Panels</a></li> <li><a href="resources/resizeable_panels.html">Resizeable Panels</a></li>
                         <li><a href="resources/buttons.html">Buttons</a></li>
@@ -251,15 +259,15 @@
 
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="resources/#"><i class="fa fa-bars"></i> </a>
-                <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
-                    <div class="form-group">
-                        <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                    </div>
-                </form>
-            </div>
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="resources/#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
                     <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
@@ -367,97 +375,81 @@
                     </a>
                 </li>
             </ul>
+
         </nav>
         </div>
-      <div class="row">
-                    <div class="col-lg-4">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <span class="label label-success pull-right">Monthly</span>
-                                <h5>Income</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">40 886,200</h1>
-                                <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                                <small>Total income</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <span class="label label-info pull-right">Annual</span>
-                                <h5>Orders</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">275,800</h1>
-                                <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                                <small>New orders</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <span class="label label-primary pull-right">Today</span>
-                                <h5>Vistits</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins">106,120</h1>
-                                <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                <small>New visits</small>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+
+        <div class="wrapper wrapper-content">
         <div class="row">
-                                                       <c:forEach items="${finishedCourrier }" var="map">
-        
-            <div class="col-lg-6">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5><c:out value="${map.objet }" /></h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="resources/#">Config option 1</a>
-                                </li>
-                                <li><a href="resources/#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="ibox-content">
-                        <div class="list-group">
-                            
+            
+            <div class="col-lg-9 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
+                    <a href="resources/mailbox.html" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
+                </div>
+                <h2>
+                    Compse mail
+                </h2>
+            </div>
+                <div class="mail-box">
+<form method="POST" class="form-horizontal"
+									action="forwarding">
 
-                            <a class="list-group-item" href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map.idCourrier}"/>">
-											
-                           <strong>expéditeur:</strong><c:out value="${map.expéditeur }" /><br>
-                           <strong>Date:</strong><c:out value="${map.date }" /><br>
-                            </a>
+                <div class="mail-body">
 
-                            
-                        </div>
-                    </div>
                     
+                        <div class="form-group"><label class="col-sm-2 control-label">To:</label>
+							
+										<div class="col-sm-10">
+										<select	class="select2_demo_1 form-control" name="idDepartement">
+										<!--<c:forEach items="${allCompanies}" var="map">
+											<option value="<c:out value="${map['idSociété']}" />"><c:out value="${map['nom']}" /></option>  
+											</c:forEach>
+											-->
+											<option value="0"><c:out value="aaaa" /></option> 
+										
+										
+										
+
+										</select>
+										</div>                        
+										</div>
+                        <div class="form-group"><label class="col-sm-2 control-label">annotation:</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control" value="" name="annotation"></div>
+                            <input type="hidden" value="<c:out value="${idCourrier}" />" name="idCourrier"/> 
+                        </div>
+                        
+
+                </div>
+
+                    <div class="mail-text h-200">
+
+                        <div class="summernote">
+                            <h3>Hello Jonathan! </h3>
+                            dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                            <br/>
+                            <br/>
+
+                        </div>
+<div class="clearfix"></div>
+                        </div>
+                    <div class="mail-body text-right tooltip-demo">
+                    <button type="submit" class="btn btn-default btn-xs">Mini button</button>
+                        <a href="resources/mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</a>
+                        <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
+                        <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
+                    </div>
+                    <div class="clearfix"></div>
+
+</form>
+
                 </div>
             </div>
-            
-            
-            
-            
-                                							</c:forEach>
-            
+        </div>
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -471,7 +463,6 @@
         </div>
         </div>
 
-
     <!-- Mainly scripts -->
     <script src="resources/js/jquery-2.1.1.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
@@ -482,9 +473,48 @@
     <script src="resources/js/inspinia.js"></script>
     <script src="resources/js/plugins/pace/pace.min.js"></script>
 
+    <!-- iCheck -->
+    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
 
+    <!-- SUMMERNOTE -->
+    <script src="resources/js/plugins/summernote/summernote.min.js"></script>
+    
+    	<!-- Select2 -->
+    <script src="resources/js/plugins/select2/select2.full.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+
+            $('.summernote').summernote();
+
+        });
+        var edit = function() {
+            $('.click2edit').summernote({focus: true});
+        };
+        var save = function() {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+
+    </script>
+     <script>
+        $(document).ready(function(){
+            $(".select2_demo_1").select2();
+            $(".select2_demo_2").select2();
+            $(".select2_demo_3").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+        });
+
+    </script>
 </body>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/typography.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:44:55 GMT -->
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/mail_compose.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:47 GMT -->
 </html>

@@ -10,10 +10,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="_csrf_param" content="${_csrf.parameterName}"/>
-<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_param" content="${_csrf.parameterName}" />
+<meta name="_csrf" content="${_csrf.token}" />
 <!-- default header name is X-CSRF-TOKEN -->
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>INSPINIA | Mailbox</title>
 
 <link
@@ -374,15 +374,12 @@
 				<div class="col-lg-12 animated fadeInRight">
 					<div class="mail-box-header">
 						<div class="pull-right tooltip-demo">
-							<a href="mail_compose.html" class="btn btn-white btn-sm"
-								data-toggle="tooltip" data-placement="top" title="Reply"><i
-								class="fa fa-reply"></i> Reply</a> <a href="#"
+							<a href="${pageContext.request.contextPath}/forward?id=<c:out value="${selectedCourrier['idCourrier']}"/>" class="btn btn-white btn-sm"
+								data-toggle="tooltip" data-placement="top" title="transférer"><i
+								class="fa fa-mail-forward"></i> transférer</a> <a href="#"
 								class="btn btn-white btn-sm" data-toggle="tooltip"
-								data-placement="top" title="Print email"><i
-								class="fa fa-print"></i> </a> <a href="mailbox.html"
-								class="btn btn-white btn-sm" data-toggle="tooltip"
-								data-placement="top" title="Move to trash"><i
-								class="fa fa-trash-o"></i> </a>
+								data-placement="top" title="archiver"><i
+								class="fa fa-archive"></i>archiver </a> 
 						</div>
 						<h2>Courrier</h2>
 						<div class="mail-tools tooltip-demo m-t-md">
@@ -404,8 +401,9 @@
 
 
 						<div class="mail-body">
-							<c:out value="${selectedCourrier}" />
-							<c:set var="bas" value="${selectedCourrier['listePiécesJointes'][0] }" />    
+
+							<c:out value="${paths}" />
+
 
 							<c:out value="${selectedCourrier['idCourrier']}" />
 							<h3>Hello Jonathan!</h3>
@@ -431,196 +429,218 @@
 										<c:otherwise>${fn:length(selectedCourrier['listePiécesJointes'])} -piéces jointes</c:otherwise>
 									</c:choose></span> <a href="#">Download all</a> | <a href="#">View all images</a>
 							</p>
-
 							<div class="attachment">
-								<div class="file-box">
-									<div class="file">
-										<a href="#" data-toggle="modal" data-target=".pop-up-1">
-										 <span class="corner"></span>
 
-											<div class="icon">
-												<i class="fa fa-file"></i>
-											</div>
-											<div class="file-name">
-												Document_2014.doc <br /> <small>Added: Jan 11, 2014</small>
-											</div>
-										</a>
-									</div>
 
-								</div>
-								<div class="file-box">
-									<div class="file">
-										<a href="#"> <span class="corner"></span>
+								<c:forEach var="i" begin="1"
+									end="${fn:length(selectedCourrier['listePiécesJointes'])}"
+									varStatus="loop">
+									<c:set var="aa" value="${paths[loop.index-1]}" />
+									<c:set var="basename" value="${fn:split(aa, '.')[1]}" />
+									<c:choose>
+										<c:when test="${basename=='pdf'}">
+											<div class="file-box">
+												<div class="file">
+													<a href="#" data-toggle="modal" data-target=".pop-up-1"
+														data-book-id="my_id_value"> <span class="corner"></span>
+														<div class="icon">
+															<i class="fa fa-file"></i>
+														</div>
+														<div class="file-name">
 
-											<div class="image">
-												<img alt="image" class="img-responsive"
-													src="${pageContext.request.contextPath}/resources/img/p1.jpg">
+															${paths[loop.index-1]} <br /> <small>Added: Jan
+																11, 2014</small>
+														</div>
+													</a>
+												</div>
 											</div>
-											<div class="file-name">
-												Italy street.jpg <br /> <small>Added: Jan 6, 2014</small>
-											</div>
-										</a>
+										</c:when>
+										<c:otherwise>
+											<div class="file-box">
+												<div class="file">
+													<a href="#" data-toggle="modal" data-target=".pop-up-1">
+														<span class="corner"></span>
+														<div class="image">
+															<img alt="image" class="img-responsive"
+																src="resources/img/${paths[loop.index-1]}"
+																id="${basename}">
+														</div>
 
-									</div>
-								</div>
-								<div class="file-box">
-									<div class="file">
-										<a href="#"> <span class="corner"></span>
+														<div class="file-name">
+															<input type="hidden" value="${basename}">
 
-											<div class="image">
-												<iframe
-													src="${selectedCourrier['listePiécesJointes'][0] }"></iframe>
+															${paths[loop.index-1] } <br /> <small>Added: Jan
+																6, 2014</small>
+														</div>
+													</a>
+												</div>
 											</div>
-											<div class="file-name">
-												My feel.png <br /> <small>Added: Jan 7, 2014</small>
-											</div>
-										</a>
-									</div>
-								</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<div class="container"></div>
+								<!-- /.container -->
 								<div class="clearfix"></div>
 							</div>
-						</div>
+							<div class="container">
+								<!--  Modal content for the mixer image example -->
+								<div class="modal fade pop-up-1" tabindex="-1" role="dialog"
+									aria-labelledby="myLargeModalLabel-1" aria-hidden="true"
+									id="modal1">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
 
-						<div class="container">
-
-							<!--  Modal content for the mixer image example -->
-							<div class="modal fade pop-up-1" tabindex="-1" role="dialog"
-								aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
-											<h4 class="modal-title" id="myLargeModalLabel-1">Mixer
-												Board</h4>
-										</div>
-										<div class="modal-body">
-											<embed
-												src="file:///C:/Users/Wassim/Downloads/annexe-canada-2017-2018.pdf"
-												width="850px" height="700px" alt="">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">×</button>
+												<h4 class="modal-title" id="myLargeModalLabel-1">Mixer
+													Board</h4>
+											</div>
+											<div class="modal-body">
+												<c:choose>
+													<c:when test="${invoker=='pdf'}">
+													${basename }
+														<embed src="resources/img/${paths[0]}" width="850px"
+															height="700px" />
+													</c:when>
+													<c:otherwise>
+													${basename }
+														<img alt="image" class="img-responsive"
+															src="resources/img/${paths[0]}">
+													</c:otherwise>
+												</c:choose>
+											</div>
 										</div>
 									</div>
-									<!-- /.modal-content -->
 								</div>
-								<!-- /.modal-dialog -->
+
+
 							</div>
-							<!-- /.modal mixer image -->
+							<!-- /.container -->
+							<div class="mail-body text-right tooltip-demo">
+								<button class="btn btn-primary "
+									onclick="sendDataWithJson(true);" type="button">
+									<i class="fa fa-check"></i>&nbsp;approuver
+								</button>
+								<button class="btn btn-primary "
+									onclick="sendDataWithJson(false);" type="button">
+									<i class="fa fa-times"></i>&nbsp;rejeter
+								</button>
 
-							<!--  Modal content for the lion image example -->
-
-
+							</div>
+							<div class="clearfix"></div>
 
 
 						</div>
-						<!-- /.container -->
-						<div class="mail-body text-right tooltip-demo">
-							<button class="btn btn-primary "
-								onclick="sendDataWithJson(true);"
-								type="button">
-								<i class="fa fa-check"></i>&nbsp;approuver
-							</button>
-							<button class="btn btn-primary " onclick="sendDataWithJson(false);" type="button">
-								<i class="fa fa-times"></i>&nbsp;rejeter
-							</button>
-
-						</div>
-						<div class="clearfix"></div>
-
-
+					</div>
+					<!--end of mail view zone -->
+				</div>
+				<div class="footer">
+					<div class="pull-right">
+						10GB of <strong>250GB</strong> Free.
+					</div>
+					<div>
+						<strong>Copyright</strong> Example Company &copy; 2014-2015
 					</div>
 				</div>
-				<!--end of mail view zone -->
-			</div>
-			<div class="footer">
-				<div class="pull-right">
-					10GB of <strong>250GB</strong> Free.
-				</div>
-				<div>
-					<strong>Copyright</strong> Example Company &copy; 2014-2015
-				</div>
-			</div>
 
+			</div>
 		</div>
-	</div>
 
-	<!-- Mainly scripts -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
+		<!-- Mainly scripts -->
+		<script
+			src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-	<!-- Custom and plugin javascript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/inspinia.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script>
+		<!-- Custom and plugin javascript -->
+		<script
+			src="${pageContext.request.contextPath}/resources/js/inspinia.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script>
 
-	<!-- iCheck -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/plugins/iCheck/icheck.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('.i-checks').iCheck({
-				checkboxClass : 'icheckbox_square-green',
-				radioClass : 'iradio_square-green',
+		<!-- iCheck -->
+		<script
+			src="${pageContext.request.contextPath}/resources/js/plugins/iCheck/icheck.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('.i-checks').iCheck({
+					checkboxClass : 'icheckbox_square-green',
+					radioClass : 'iradio_square-green',
+				});
 			});
+		</script>
+		<script type="text/javascript">
+			function success(data) {
+				alert(data.text);
+			}
+			function error(data) {
+				alert("error");
+			}
+			function sendDataWithJson(isValidated) {
+
+				$
+						.ajax({
+							type : 'POST',
+							url : '<c:url value="/réviserCourrier" />',
+							data : JSON
+									.stringify({
+										"idCourrier" : <c:out value="${selectedCourrier['idCourrier']}" />,
+										"isValidated" : isValidated
+									}),
+							success : success,
+							error : error,
+							contentType : "application/json; charset=utf-8",
+							dataType : "json"
+
+						});
+
+			}
+		</script>
+		<div id="doc2"></div>
+		<script>
+			$("#cde")
+					.click(
+							function() {
+								alert('here');
+								$
+										.ajax({
+											type : "GET",
+											url : 'cde',
+											contentType : "application/json; charset=utf-8",
+											data : "",
+
+											error : function(XMLHttpRequest,
+													error, errorThrown) {
+												alert(error);
+												alert(errorThrown);
+											},
+											success : function(data) {
+												alert('success');
+												alert(data);
+												var obj = $('<object type="application/pdf" width="100%" height="100%" border="2"></object>');
+												obj.attr('data',
+														'data:application/pdf;base64,'
+																+ data);
+
+												$("#doc2").append(obj);
+											}
+										});
+							});
+		</script>
+		<script type="text/javascript">
+		$('#modal1').on('show.bs.modal', function(e) {
+			console.log("eee");
+		    var bookId = $(e.relatedTarget).data('book-id');
+		    console.log($(e.currentTarget).find('input[name="bookId"]').val());
+		    $(e.currentTarget).find('basename').val(bookId);
 		});
-	</script>
-	<script type="text/javascript">
-	function success(data){
-		alert(data.text);
-	}
-	function error(data){
-		alert("error");
-	}
-	function sendDataWithJson(isValidated){
-
-		$.ajax({
-		    type: 'POST',
-		    url: '<c:url value="/réviserCourrier" />',
-		    data: JSON.stringify({"idCourrier":<c:out value="${selectedCourrier['idCourrier']}" />,"isValidated":isValidated}),
-		    success:success,
-		    error:error,
-		    contentType: "application/json; charset=utf-8",
-		    dataType: "json"
-		    
-		});
-
-
-		}
-	</script>
-	<div id="doc2"></div>
-<script>
-$( "#cde" ).click(function() {
-alert('here');
-$.ajax({
-    type : "GET",
-    url : 'cde', 
-    contentType: "application/json; charset=utf-8",
-    data: ""
-    ,
-
-    error: function(XMLHttpRequest, error, errorThrown){  
-          alert(error);  
-          alert(errorThrown);  
-          },   
-    success : function(data) {
-     alert('success');
-     alert(data);
-     var obj = $('<object type="application/pdf" width="100%" height="100%" border="2"></object>'); 
-     obj.attr('data','data:application/pdf;base64,'+data);  
-
-    $("#doc2").append(obj);   
-    }
-});
- });
-</script>
+		</script>
 </body>
 
 

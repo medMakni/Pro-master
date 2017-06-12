@@ -20,6 +20,7 @@
 <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
 <link href="resources/css/animate.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
+    <link href="resources/css/plugins/select2/select2.min.css" rel="stylesheet">
 
 <link
 	href="resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"
@@ -465,6 +466,7 @@
 										</select>
 										</div>
 									</div>
+									
 									<div class="form-group">
 										<div class="hr-line-dashed"></div>
 
@@ -502,6 +504,8 @@
 	<!-- Custom and plugin javascript -->
 	<script src="resources/js/inspinia.js"></script>
 	<script src="resources/js/plugins/pace/pace.min.js"></script>
+	<!-- Select2 -->
+    <script src="resources/js/plugins/select2/select2.full.min.js"></script>
 
 	<!-- iCheck -->
 	<script src="resources/js/plugins/iCheck/icheck.min.js"></script>
@@ -513,6 +517,32 @@
 			});
 		});
 	</script>
+	   <script>
+        $(document).ready(function(){
+
+           
+
+            $(".select2_demo_1").select2();
+            $(".select2_demo_2").select2();
+            $(".select2_demo_3").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+
+
+         
+
+      
+
+
+        });
+      
+
+
+      
+
+
+    </script>
 </body>
 
 

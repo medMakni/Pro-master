@@ -1,11 +1,14 @@
 package controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.task.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import servicesIn.LoginService;
@@ -22,7 +26,7 @@ import servicesIn.TestService;
 
 public class TestController {
 	final String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
-
+	RestTemplate restTemplate = new RestTemplate();
 	//private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 	TestService ts = new TestService();
 	LoginService ls =new LoginService();
@@ -87,12 +91,16 @@ public class TestController {
 		}
 	}
 
-	@RequestMapping(value = "/create")
+	@RequestMapping(value = "/dashboard")
 
-	public String createWorkfow() {
-
-		ts.startWorkflow();
-		return "home";
+	public String createWorkfow(Principal principal,Model model) {
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> finishedCourrier = restTemplate.getForObject(
+				SERVER_URI + "/getListCourriersArrivésParUser" + "?username=" + principal.getName(),
+				ArrayList.class);
+		System.out.println("yyyy" + finishedCourrier);
+		model.addAttribute("finishedCourrier", finishedCourrier);
+		return "dashboard";
 
 	}
 
@@ -102,6 +110,32 @@ public class TestController {
 		List<Task>l=(List<Task>) ts.getWorkflows(principal);
 		model.addAttribute("list",l);
 		return "createdWorkflow";
+
+	}
+	
+	@RequestMapping(value = "/forward" ,method=RequestMethod.GET)
+
+	public String forwardMail(@RequestParam("id") String idCourrier,ModelMap model) {
+		model.addAttribute("idCourrier", idCourrier);
+
+		return "forward";
+
+	}
+	
+	@RequestMapping(value = "/forwarding" ,method=RequestMethod.POST)
+	
+	public String forwardMailTo(@RequestParam("idCourrier") String idCourrier,@RequestParam("idDepartement") String idDepartement,@RequestParam("annotation") String annotation,ModelMap model,Principal principal) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("idCourrier", idCourrier);
+		map.put("idDepartement", idDepartement);
+		map.put("username", principal.getName());
+		map.put("annotation", annotation);
+
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> finishedCourrier = restTemplate.postForObject(
+				SERVER_URI + "/traiterCourrier" ,map,
+				ArrayList.class);
+		return "dashboard";
 
 	}
 }
