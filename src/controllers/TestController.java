@@ -117,6 +117,14 @@ public class TestController {
 
 	public String forwardMail(@RequestParam("id") String idCourrier,ModelMap model) {
 		model.addAttribute("idCourrier", idCourrier);
+		@SuppressWarnings("unchecked")
+		Map<String, Object> selectedCourrier = restTemplate
+				.getForObject(SERVER_URI + "/getCourrierDetails" + "?id=" + idCourrier, HashMap.class);
+System.out.println("eee"+selectedCourrier);
+		@SuppressWarnings("unchecked")
+		List<String> getSousDir = restTemplate.getForObject(SERVER_URI + "/getSousGroup"+"?id="+idCourrier+"&direction="+selectedCourrier.get("départmentId") ,ArrayList.class);
+		System.out.println("tyui"+getSousDir);
+		model.addAttribute("getSousDir",getSousDir);
 
 		return "forward";
 
@@ -132,9 +140,7 @@ public class TestController {
 		map.put("annotation", annotation);
 
 		@SuppressWarnings("unchecked")
-		List<Map<String, Object>> finishedCourrier = restTemplate.postForObject(
-				SERVER_URI + "/traiterCourrier" ,map,
-				ArrayList.class);
+		List<Map<String, Object>> finishedCourrier = restTemplate.postForObject(SERVER_URI + "/traiterCourrier" ,map,ArrayList.class);
 		return "dashboard";
 
 	}

@@ -58,7 +58,7 @@ public class CourrierController {
 		map.add("dateOut", dateOut);
 		map.add("societe", societe);
 		map.add("expéditeur", "steg");
-
+		map.add("déstinataire", "Direction Générale");
 		RestTemplate restTemplate = new RestTemplate();
 
 		@SuppressWarnings("unchecked")

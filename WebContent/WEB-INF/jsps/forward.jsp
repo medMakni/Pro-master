@@ -389,7 +389,7 @@
                     <a href="resources/mailbox.html" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
                 </div>
                 <h2>
-                    Compse mail
+                    Compse mail ${getSousDir['0']}
                 </h2>
             </div>
                 <div class="mail-box">
@@ -403,11 +403,11 @@
 							
 										<div class="col-sm-10">
 										<select	class="select2_demo_1 form-control" name="idDepartement">
-										<!--<c:forEach items="${allCompanies}" var="map">
-											<option value="<c:out value="${map['idSociété']}" />"><c:out value="${map['nom']}" /></option>  
+										<c:forEach items="${getSousDir}" var="map" varStatus="loop">
+											<option value="${getSousDir[loop.index]}">${getSousDir[loop.index]}</option>  
 											</c:forEach>
-											-->
-											<option value="0"><c:out value="aaaa" /></option> 
+																					
+
 										
 										
 										
