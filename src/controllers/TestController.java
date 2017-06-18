@@ -135,12 +135,20 @@ System.out.println("eee"+selectedCourrier);
 	public String forwardMailTo(@RequestParam("idCourrier") String idCourrier,@RequestParam("idDepartement") String idDepartement,@RequestParam("annotation") String annotation,ModelMap model,Principal principal) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("idCourrier", idCourrier);
-		map.put("idDepartement", idDepartement);
+		map.put("idDepartement", idDepartement); 
 		map.put("username", principal.getName());
 		map.put("annotation", annotation);
+System.out.println("cvb"+map);
+		restTemplate.postForObject(SERVER_URI + "/traiterCourrier" ,map,Void.class);
+		return "dashboard";
 
-		@SuppressWarnings("unchecked")
-		List<Map<String, Object>> finishedCourrier = restTemplate.postForObject(SERVER_URI + "/traiterCourrier" ,map,ArrayList.class);
+	}
+	@RequestMapping(value = "/archiverCourrier" ,method=RequestMethod.GET)
+
+	public String archiverCourrier(@RequestParam("id") String idCourrier) {
+		//get archier method from server side
+		restTemplate.getForObject(SERVER_URI + "/archiverCourrier"+"?id="+idCourrier,Void.class);
+System.out.println("mrigel");
 		return "dashboard";
 
 	}

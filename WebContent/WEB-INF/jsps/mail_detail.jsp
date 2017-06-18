@@ -376,7 +376,7 @@
 						<div class="pull-right tooltip-demo">
 							<a href="${pageContext.request.contextPath}/forward?id=<c:out value="${selectedCourrier['idCourrier']}"/>" class="btn btn-white btn-sm"
 								data-toggle="tooltip" data-placement="top" title="transférer"><i
-								class="fa fa-mail-forward"></i> transférer</a> <a href="#"
+								class="fa fa-mail-forward"></i> transférer</a> <a href="${pageContext.request.contextPath}/archiverCourrier?id=<c:out value="${selectedCourrier['idCourrier']}"/>"
 								class="btn btn-white btn-sm" data-toggle="tooltip"
 								data-placement="top" title="archiver"><i
 								class="fa fa-archive"></i>archiver </a> 

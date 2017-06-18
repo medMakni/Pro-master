@@ -23,7 +23,7 @@ public class CourrierController {
 	final String SERVER_URI = "http://localhost:8081/BackEndFinalVersion";
 
 	@RequestMapping(value = "/sendCourrierData", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody Boolean getCourrierObject(Principal principal, @RequestParam("name") MultipartFile[] files,
+	public  String getCourrierObject(Principal principal, @RequestParam("name") MultipartFile[] files,
 			@RequestParam("objet") Object objet, @RequestParam("dateIn") Object dateIn,
 			@RequestParam("dateOut") Object dateOut, @RequestParam("societe") String societe) {
 
@@ -64,6 +64,7 @@ public class CourrierController {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> roles = restTemplate
 				.getForObject(SERVER_URI + "/getUserRole" + "?uid=" + principal.getName(), HashMap.class);
+		System.out.println("zzz"+roles);
 		@SuppressWarnings("unchecked")
 		List<String> d = (List<String>) roles.get("directions");
 
@@ -71,7 +72,7 @@ public class CourrierController {
 
 		restTemplate.postForObject(SERVER_URI + "/créerCourriers", map, Void.class);
 
-		return true;
+		return "dashboard";
 	}
 
 }

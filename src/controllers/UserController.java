@@ -37,16 +37,17 @@ public class UserController {
 				.getForObject(SERVER_URI + "/getUserRole" + "?uid=" + principal.getName(), HashMap.class);
 		@SuppressWarnings("unchecked")
 		List<String> r = (List<String>) roles.get("roles");
+		System.out.println("cccc"+r);
 		for (int i = 0; i < r.size(); i++) {
 			System.out.println("zzzzz");
-			if (r.get(i).equals("Secrétaire Générale")) {
+			if (r.get(i).equals("secrétairesGénérale")) {
 				@SuppressWarnings("unchecked")
 				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/listCourriersArrivés",
 						ArrayList.class);
 				System.out.println("eeee" + allCourrier);
 				model.addAttribute("allCourrier", allCourrier);
 			} else {
-				System.out.println(principal.getName());
+				System.out.println("zerte"+principal.getName());
 				@SuppressWarnings("unchecked")
 				List<Map<String, Object>> finishedCourrier = restTemplate.getForObject(
 						SERVER_URI + "/getListCourriersArrivésParUser" + "?username=" + principal.getName(),
