@@ -405,7 +405,7 @@
 							<c:out value="${paths}" />
 
 
-							<c:out value="${selectedCourrier['idCourrier']}" />
+							<c:out value="${selectedCourrier}" />
 							<h3>Hello Jonathan!</h3>
 							dummy text of the printing and typesetting industry. <strong>Lorem
 								Ipsum has been the industry's</strong> standard dummy text ever since the

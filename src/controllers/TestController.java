@@ -115,14 +115,21 @@ public class TestController {
 	
 	@RequestMapping(value = "/forward" ,method=RequestMethod.GET)
 
-	public String forwardMail(@RequestParam("id") String idCourrier,ModelMap model) {
+	public String forwardMail(@RequestParam("id") String idCourrier,ModelMap model,Principal principal) {
 		model.addAttribute("idCourrier", idCourrier);
 		@SuppressWarnings("unchecked")
 		Map<String, Object> selectedCourrier = restTemplate
 				.getForObject(SERVER_URI + "/getCourrierDetails" + "?id=" + idCourrier, HashMap.class);
 System.out.println("eee"+selectedCourrier);
+
+@SuppressWarnings("unchecked")
+Map<String,Object> roles=restTemplate.getForObject(SERVER_URI+"/getUserRole"+"?uid=" + principal.getName(), HashMap.class);
+@SuppressWarnings("unchecked")
+List<String>r=(List<String>) roles.get("roles");
+@SuppressWarnings("unchecked")
+List<String>d=(List<String>) roles.get("directions");
 		@SuppressWarnings("unchecked")
-		List<String> getSousDir = restTemplate.getForObject(SERVER_URI + "/getSousGroup"+"?id="+idCourrier+"&direction="+selectedCourrier.get("départmentId") ,ArrayList.class);
+		List<String> getSousDir = restTemplate.getForObject(SERVER_URI + "/getSousGroup"+"?id="+idCourrier+"&direction="+d.get(0) ,ArrayList.class);
 		System.out.println("tyui"+getSousDir);
 		model.addAttribute("getSousDir",getSousDir);
 
@@ -152,4 +159,5 @@ System.out.println("mrigel");
 		return "dashboard";
 
 	}
+	
 }
