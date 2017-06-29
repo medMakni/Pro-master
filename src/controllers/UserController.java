@@ -44,6 +44,8 @@ public class UserController {
 				@SuppressWarnings("unchecked")
 				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/listCourriersArrivés",
 						ArrayList.class);
+				List<Map<String, Object>> getFinishedCourrier = restTemplate.getForObject(SERVER_URI + "/getFinishedCourrier",
+						ArrayList.class);
 				System.out.println("eeee" + allCourrier);
 				model.addAttribute("allCourrier", allCourrier);
 			} else {
@@ -52,7 +54,9 @@ public class UserController {
 				List<Map<String, Object>> finishedCourrier = restTemplate.getForObject(
 						SERVER_URI + "/getListCourriersArrivésParUser" + "?username=" + principal.getName(),
 						ArrayList.class);
-				System.out.println("yyyy" + finishedCourrier);
+				List<Map<String, Object>> getFinishedCourrierperUser = restTemplate.getForObject(SERVER_URI + "/getFinishedCourrier"+ "?uid=" + principal.getName(),
+						ArrayList.class);
+				System.out.println("yyyy" + getFinishedCourrierperUser);
 				model.addAttribute("finishedCourrier", finishedCourrier);
 			}
 		}

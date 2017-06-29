@@ -140,8 +140,8 @@
 							<li><a
 								href="${pageContext.request.contextPath}/CourriersArrivées">Courriers
 									Arrivées</a></li>
-							<li><a href="${pageContext.request.contextPath}/CourriersSorties">Courriers Sorties</a></li>
-							<li><a href="${pageContext.request.contextPath}/CourriersInternes">Courriers Internes</a></li>
+							<li><a href="CourriersDéparts.html">Courriers Sorties</a></li>
+							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
 
 						</ul></li>
 					<li><a href="#"><i class="fa fa-user"></i> <span
@@ -159,7 +159,7 @@
 
 						</ul></li>
 
-					<li><a href="${pageContext.request.contextPath}/stats"><i
+					<li><a href="resources/mailbox.html"><i
 							class="fa fa-bar-chart-o"></i></i> <span class="nav-label">Statistique
 						</span></a></li>
 			</div>
@@ -281,7 +281,7 @@
 					</ul>
 				</nav>
 
-				<form method="POST" action="sendCourrierData"
+				<form method="POST" action="sendCourrierSortieData"
 					enctype="multipart/form-data">
 					<div class="col-lg-12">
 						<div class="ibox float-e-margins">
@@ -334,15 +334,17 @@
 										<label class="col-sm-1 control-label">Catégorie:</label>
 
 										<div class="btn-group">
-											<div class="col-sm-20">
-											<select	class="select2_demo_1 form-control" name="idCategorie">
-												<option value="Courrier Normal">Courrier Normal</option>
-												<option value="Courrier à la clientèle" >Courrier à la clientèle</option>
-												<option value="Autre">Autre</option>
-											
-											</select>
-										    </div>
-											
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
+
+											</ul>
 										</div>
 									</div>
 
@@ -389,31 +391,37 @@
 
 										<label class="col-sm-2 control-label">Organisme:</label>
 
-										<div class="col-sm-3">
-											<select	class="select2_demo_1 form-control" name="societe">
-										<c:forEach items="${allCompanies}" var="map">
-											<option value="<c:out value="${map['idSociété']}" />"><c:out value="${map['nom']}" /></option>
-										
-										</c:forEach>
-										
+										<div class="col-sm-5">
+											<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
 
-										</select>
+											</ul>
 										</div>
-										<div class="col-sm-2">
 										</div>
 
 
 										<label class="col-sm-1 control-label">Contact:</label>
 
-										<div class="col-sm-3">
-										<select	class="select2_demo_1 form-control" name="idContact">
-										<c:forEach items="${allContacts}" var="map">
-											<option value="<c:out value="${map['idContact']}" />"><c:out value="${map['nom']}" /></option>
-										
-										</c:forEach>
-										
+										<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle">
+												Courrier Normal<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="#" class="font-bold">Courrier Normal</a></li>
+												<li><a href="#" class="font-bold">Courrier Ã  la
+														clientÃ¨le</a></li>
+												<li><a href="#" class="font-bold">Autre</a></li>
 
-										</select>
+											</ul>
 										</div>
 									</div>
 
@@ -424,21 +432,21 @@
 
 										<div class="col-sm-10">
 											<input type="text" class="form-control" value=""
-												name="email">
+												name="societe">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Fax:</label>
 
 										<div class="col-sm-10">
-											<input type="text" class="form-control" value="" name="fax">
+											<input type="text" class="form-control" value="">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Adresse:</label>
 
 										<div class="col-sm-10">
-											<input type="text" class="form-control" value="" name="adresse">
+											<input type="text" class="form-control" value="">
 										</div>
 									</div>
 									<br>
@@ -473,7 +481,7 @@
 
 
 												<div class="mail-text h-200">
-													<div class="summernote" >
+													<div class="summernote">
 														<h3>Hello Jonathan!</h3>
 														dummy text of the printing and typesetting industry. <strong>Lorem
 															Ipsum has been the industry's</strong> standard dummy text ever
@@ -568,28 +576,50 @@
 									</p>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Responsable:</label>
-										<div class="col-sm-3">
-											<select	class="select2_demo_1 form-control" name="idResponsable">
-										<c:forEach items="${allDirections}" var="map">
-											<option value="<c:out value="${map}" />"><c:out value="${map}" /></option>
-										
-										</c:forEach>
-										
-
-										</select>
+										<div class="col-sm-10">
+											<div data-toggle="buttons-checkbox" class="btn-group">
+												<button class="btn btn-primary btn-outline" type="button">
+													Lettre</button>
+												<button class="btn btn-primary btn-outline" type="button">
+													Mail</button>
+												<button class="btn btn-primary btn-outline" type="button">
+													Fax</button>
+											</div>
 										</div>
 									</div>
 									<br>
-									
+									<div class="form-group">
+
+										<label class="col-sm-2 control-label">En copie:</label>
+
+										<div class="col-sm-10">
+
+											<div class="btn-group" data-toggle="buttons">
+												<label class="btn btn-primary active"> <input
+													type="radio" name="options" id="option1" autocomplete="off"
+													checked> Radio 1 (preselected)
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="option2" autocomplete="off">
+													Radio 2
+												</label> <label class="btn btn-primary"> <input type="radio"
+													name="options" id="option3" autocomplete="off">
+													Radio 3
+												</label>
+											</div>
+										</div>
+
+
+
+									</div>
 
 
 									<p>
 										<span class="label label-info">Workflow</span>
 									</p>
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Commentaire:</label>
+										<label class="col-sm-2 control-label">Commantaire:</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" value="" name="commentaire">
+											<input type="text" class="form-control" value="">
 										</div>
 									</div>
 

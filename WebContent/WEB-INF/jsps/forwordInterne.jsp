@@ -2,26 +2,27 @@
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/graph_morris.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:26 GMT -->
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/mail_compose.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:41 GMT -->
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Morris.js Charts</title>
-		
+    <title>INSPINIA | Mailbox</title>
+
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- morris -->
-    <link href="resources/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-
+    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="resources/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="resources/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
     <link href="resources/css/animate.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
+    <link href="resources/css/plugins/select2/select2.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -64,11 +65,11 @@
                 <li>
                     <a href="resources/layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="resources/#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
+                    <ul class="nav nav-second-level collapse">
                         <li><a href="resources/graph_flot.html">Flot Charts</a></li>
-                        <li class="active"><a href="resources/graph_morris.html">Morris.js Charts</a></li>
+                        <li><a href="resources/graph_morris.html">Morris.js Charts</a></li>
                         <li><a href="resources/graph_rickshaw.html">Rickshaw Charts</a></li>
                         <li><a href="resources/graph_chartjs.html">Chart.js</a></li>
                         <li><a href="resources/graph_chartist.html">Chartist</a></li>
@@ -77,12 +78,12 @@
                         <li><a href="resources/graph_sparkline.html">Sparkline Charts</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="active">
                     <a href="resources/mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                    <ul class="nav nav-second-level collapse">
+                    <ul class="nav nav-second-level">
                         <li><a href="resources/mailbox.html">Inbox</a></li>
                         <li><a href="resources/mail_detail.html">Email view</a></li>
-                        <li><a href="resources/mail_compose.html">Compose email</a></li>
+                        <li class="active"><a href="resources/mail_compose.html">Compose email</a></li>
                         <li><a href="resources/email_template.html">Email templates</a></li>
                     </ul>
                 </li>
@@ -258,7 +259,7 @@
 
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="resources/#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
@@ -377,146 +378,78 @@
 
         </nav>
         </div>
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>Morris.js Charts</h2>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="resources/index-2.html">Home</a>
-                        </li>
-                        <li>
-                            <a>Graphs</a>
-                        </li>
-                        <li class="active">
-                            <strong>Morris.js Charts </strong>
-                        </li>
-                    </ol>
+
+        <div class="wrapper wrapper-content">
+        <div class="row">
+            
+            <div class="col-lg-9 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
+                    <a href="resources/mailbox.html" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
                 </div>
-                <div class="col-lg-2">
+                <h2>
+                    Compse mail ${getSousDir['0']}
+                </h2>
+            </div>
+                <div class="mail-box">
+<form method="POST" class="form-horizontal"
+									action="forwardingInterne">
+
+                <div class="mail-body">
+
+                    
+                        <div class="form-group"><label class="col-sm-2 control-label">To:</label>
+							
+										<div class="col-sm-10">
+										<select	class="select2_demo_1 form-control" name="idDepartement">
+										<c:forEach items="${getSousDir}" var="map" varStatus="loop">
+											<option value="${getSousDir[loop.index]}">${getSousDir[loop.index]}</option>  
+											</c:forEach>
+																					
+
+										
+										
+										
+
+										</select>
+										</div>                        
+										</div>
+                        <div class="form-group"><label class="col-sm-2 control-label">annotation:</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control" value="" name="annotation"></div>
+                            <input type="hidden" value="<c:out value="${idCourrier}" />" name="idCourrier"/> 
+                        </div>
+                        
+
+                </div>
+
+                    <div class="mail-text h-200">
+
+                        <div class="summernote">
+                            <h3>Hello Jonathan! </h3>
+                            dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                            <br/>
+                            <br/>
+
+                        </div>
+<div class="clearfix"></div>
+                        </div>
+                    <div class="mail-body text-right tooltip-demo">
+                    <button type="submit" class="btn btn-default btn-xs">Mini button</button>
+                        <a href="resources/mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</a>
+                        <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
+                        <a href="resources/mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
+                    </div>
+                    <div class="clearfix"></div>
+
+</form>
 
                 </div>
             </div>
-        <div class="wrapper wrapper-content animated fadeInRight" >
-            <div class="row">
-                
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Bar Chart Example </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="resources/#">Config option 1</a>
-                                </li>
-                                <li><a href="resources/#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div id="morris-bar-chart"></div>
-                    </div>
-                </div>
-            </div>
-            </div>
-			
-         <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Bar Chart Example </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="resources/#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="resources/#">Config option 1</a>
-                                </li>
-                                <li><a href="resources/#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div id="morris-bar-societe"></div>
-                    </div>
-                </div>
-            </div>
-            <c:forEach items="${nbreFiniParDir}" var="entry">				
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>le nombre de courriers actives pour la ${entry.key}  </h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div id="morris-donut-chart-active-${entry.key}" ></div>
-                        </div>
-                    </div>
-                    </div>
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>le nombre de courriers finis pour la ${entry.key}</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div id="morris-donut-chart-finished-${entry.key}" ></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </c:forEach>
-            </div>
-
-
+        </div>
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -530,83 +463,58 @@
         </div>
         </div>
 
-
-
     <!-- Mainly scripts -->
     <script src="resources/js/jquery-2.1.1.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Morris -->
-    <script src="resources/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="resources/js/plugins/morris/morris.js"></script>
-
     <!-- Custom and plugin javascript -->
     <script src="resources/js/inspinia.js"></script>
     <script src="resources/js/plugins/pace/pace.min.js"></script>
-<script>
-Morris.Bar({
-  element: 'morris-bar-chart',
-  data: [
-    { y: 'courriers arrivees', a: "${nbreactif['courriersArrivés']}", b: "${nbrefini['courriersArrivés']}" },
-    { y: 'courriers sorties', a: "3",  b: "${nbrefini['courriersSorties']}" },
-    { y: 'courriers internes', a: "2",  b: "${nbrefini['courriersInternes']}" }
-  ],
-  xkey: 'y',
-  ykeys: ['a', 'b'],
-  labels: ['courriers actives', 'courriers finis'],
-  hideHover: 'auto',
-  barColors: ['#1ab394','#cacaca']
-});
-</script>
-<script>
-Morris.Bar({
-  element: 'morris-bar-societe',
-  data: [
-    { y: 'soc1', a: 100 },
-    { y: 'soc2', a: 75 },
-    { y: 'soc3', a: 65 },
-    { y: 'soc4', a: 55 },
-    { y: 'soc5', a: 50 }
-  ],
-  xkey: 'y',
-  ykeys: ['a'],
-  labels: ['courriers actives'],
-  hideHover: 'auto',
-  barColors: ['#1ab394']
-});
-</script>
- <c:forEach items="${nbreActiveParDir}" var="entry">				
 
-<script type="text/javascript">
-Morris.Donut({
-	  element: 'morris-donut-chart-active-${entry.key}',
-	  data: [
-	    {label: 'courriers arrivees', value: "${entry.value}"},
-	    {label: 'courriers sorties', value: 3},
-	    {label: 'courriers internes', value: 2}
-	  ],
-	  colors: ['#1ab394','#cacaca','#EBEDEF'],
-	});
-</script>
-</c:forEach>
- <c:forEach items="${nbreFiniParDir}" var="entry">				
+    <!-- iCheck -->
+    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
 
-<script type="text/javascript">
-Morris.Donut({
-	  element: 'morris-donut-chart-finished-${entry.key}',
-	  data: [
-	    {label: 'courriers arrivees', value: "${entry.value}"},
-	    {label: 'courriers sorties', value: 1},
-	    {label: 'courriers internes', value: 2}
-	  ],
-	colors: ['#1ab394','#cacaca','#EBEDEF'],
-	
-	});
-</script>
-</c:forEach>
+    <!-- SUMMERNOTE -->
+    <script src="resources/js/plugins/summernote/summernote.min.js"></script>
+    
+    	<!-- Select2 -->
+    <script src="resources/js/plugins/select2/select2.full.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+
+            $('.summernote').summernote();
+
+        });
+        var edit = function() {
+            $('.click2edit').summernote({focus: true});
+        };
+        var save = function() {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+
+    </script>
+     <script>
+        $(document).ready(function(){
+            $(".select2_demo_1").select2();
+            $(".select2_demo_2").select2();
+            $(".select2_demo_3").select2({
+                placeholder: "Select a state",
+                allowClear: true
+            });
+        });
+
+    </script>
 </body>
 
 
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.4/mail_compose.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Mar 2016 21:42:47 GMT -->
 </html>

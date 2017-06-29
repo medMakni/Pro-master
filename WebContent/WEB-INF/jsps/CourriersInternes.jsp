@@ -41,9 +41,14 @@
 								src="resources/img/profile_small.jpg" />
 							</span> <a data-toggle="dropdown" class="dropdown-toggle"
 								href="resources/#"> <span class="clear"> <span
-									class="block m-t-xs"> <strong class="font-bold"></strong>
-								</span> <span class="text-muted text-xs block">Art Director <b
-										class="caret"></b></span>
+									class="block m-t-xs"> <strong class="font-bold">${realName }</strong>
+								</span> <span class="text-muted text-xs block"> <c:forEach
+											items="${roles}" var="entry">
+											<c:out value="${entry}" />
+										</c:forEach> <c:forEach items="${directions}" var="direction">
+											<c:out value="${direction}" />
+										</c:forEach> <b class="caret"></b>
+								</span>
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -62,28 +67,34 @@
 					<li><a href="#"><i class="fa fa-envelope"></i> <span
 							class="nav-label">Courriers</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivÃ©es.html">Courriers
-									ArrivÃ©es</a></li>
-							<li><a href="CourriersDÃ©parts.html">Courriers Sorties</a></li>
-							<li><a href="CourriersInternes.html">Courriers Internes</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/CourriersArrivées">Courriers
+									Arrivées</a></li>
+							<li><a href="${pageContext.request.contextPath}/CourriersSorties">Courriers Sorties</a></li>
+							<li><a href="${pageContext.request.contextPath}/CourriersInternes">Courriers Internes</a></li>
 
 						</ul></li>
 					<li><a href="#"><i class="fa fa-user"></i> <span
 							class="nav-label">Contactes</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="CourriersArrivÃ©es.html"><i
-									class="fa fa-plus"></i>CrÃ©er Contacte</a></li>
-							<li><a href="CourriersDÃ©parts.html"><i
+							<li><a
+								href="${pageContext.request.contextPath}/createContact"><i
+									class="fa fa-plus"></i>Créer Contacte</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/createCompany"><i
+									class="fa fa-plus"></i>Créer société</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/afficherContacts"><i
 									class="fa fa-list"></i></i>Liste Contacte</a></li>
 
 						</ul></li>
 
-					<li><a href="resources/mailbox.html"><i
+					<li><a href="${pageContext.request.contextPath}/stats"><i
 							class="fa fa-bar-chart-o"></i></i> <span class="nav-label">Statistique
 						</span></a></li>
-				</ul>
 			</div>
 		</nav>
+
 		<div id="page-wrapper" class="gray-bg">
 			<div class="row border-bottom">
 				<nav class="navbar navbar-static-top" role="navigation"
@@ -94,52 +105,60 @@
 						<form role="search" class="navbar-form-custom"
 							action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
 							<div class="form-group">
-								<input type="text" placeholder="Search for something"
+								<input type="text" placeholder="Search for something..."
 									class="form-control" name="top-search" id="top-search">
 							</div>
 						</form>
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li><span class="m-r-sm text-muted welcome-message">Welcome
-								to INSPINIA+ Admin Theme.</span></li>
+								${pageContext.request.userPrincipal.name}</span></li>
 						<li class="dropdown"><a class="dropdown-toggle count-info"
 							data-toggle="dropdown" href="resources/#"> <i
 								class="fa fa-envelope"></i> <span class="label label-warning">16</span>
 						</a>
 							<ul class="dropdown-menu dropdown-messages">
-								<c:forEach items="${allCourrier}" var="map">
-
-									<li>
-										<div class="dropdown-messages-box">
-											<a href="resources/profile.html" class="pull-left"> <img
-												alt="image" class="img-circle" src="resources/img/a7.jpg">
-											</a>
-											<div class="media-body">
-												<c:forEach items="${map}" var="entry">
-													<c:if test="${entry.key=='expéditeur'}">			
-															${entry.value}.<br>
-														<small class="pull-right">46h ago</small>
-														<small class="text-muted"><c:out value="${date}" /></small>
-													</c:if>
-													<c:if test="${entry.key=='date'}">
-														<br>
-														<c:set var="date" scope="session" value="${entry.value}" />
-
-													</c:if>
-
-
-
-
-												</c:forEach>
-
-											</div>
+								<li>
+									<div class="dropdown-messages-box">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/a7.jpg">
+										</a>
+										<div class="media-body">
+											<small class="pull-right">46h ago</small> <strong>Mike
+												Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+											<small class="text-muted">3 days ago at 7:58 pm -
+												10.06.2014</small>
 										</div>
-									</li>
-
-
-									<li class="divider"></li>
-
-								</c:forEach>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="dropdown-messages-box">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/a4.jpg">
+										</a>
+										<div class="media-body ">
+											<small class="pull-right text-navy">5h ago</small> <strong>Chris
+												Johnatan Overtunk</strong> started following <strong>Monica
+												Smith</strong>. <br> <small class="text-muted">Yesterday
+												1:21 pm - 11.06.2014</small>
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="dropdown-messages-box">
+										<a href="resources/profile.html" class="pull-left"> <img
+											alt="image" class="img-circle" src="../img/profile.jpg">
+										</a>
+										<div class="media-body ">
+											<small class="pull-right">23h ago</small> <strong>Monica
+												Smith</strong> love <strong>Kim Smith</strong>. <br> <small
+												class="text-muted">2 days ago at 2:30 am -
+												11.06.2014</small>
+										</div>
+									</div>
+								</li>
 								<li class="divider"></li>
 								<li>
 									<div class="text-center link-block">
@@ -186,12 +205,12 @@
 							</ul></li>
 
 
-						<li><a href="resources/login.html"> <i
-								class="fa fa-sign-out"></i> Log out
+						<li><a href="${pageContext.request.contextPath}/logout">
+								<i class="fa fa-sign-out"></i> Log out
 						</a></li>
 					</ul>
-
 				</nav>
+
 			</div>
 			<div class="row wrapper border-bottom white-bg page-heading">
 				<div class="col-lg-10">
@@ -272,7 +291,7 @@
 										<c:choose>
 											<c:when test="${allCourrier != null}">
 												<c:forEach items="${allCourrier}" var="map">
-													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
+													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail_interne?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
 															<c:if test="${entry.key=='expéditeur'}">
 																<td>${entry.value}//<c:out value="${map['idCourrier']}"/></td>
@@ -292,7 +311,7 @@
 											</c:when>
 											<c:when test="${finishedCourrier != null}">
 												<c:forEach items="${finishedCourrier}" var="map" >
-													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail?id=<c:out value="${map['idCourrier']}"/>">
+													<tr class="gradeX clickable-row" data-href="${pageContext.request.contextPath}/mail_detail_interne?id=<c:out value="${map['idCourrier']}"/>">
 														<c:forEach items="${map}" var="entry">
 															<c:if test="${entry.key=='expéditeur'}">
 																<td>${entry.value}</td>

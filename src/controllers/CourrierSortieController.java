@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,19 +28,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import servicesIn.LoginService;
 import servicesIn.TestService;
-
 @Controller
-public class CourrierInterneController {
+public class CourrierSortieController {
 	final String SERVER_URI="http://localhost:8081/BackEndFinalVersion";
 	RestTemplate restTemplate = new RestTemplate();
 	//private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 	TestService ts = new TestService();
 	LoginService ls =new LoginService();
 
-
-	@RequestMapping(value = "/createCourrierInterne", method = RequestMethod.GET)
+	@RequestMapping(value = "/createCourrierSortie", method = RequestMethod.GET)
 	public
-	 String createCourrierInterne(Model model,Principal principal) {
+	 String createCourrierSortie(Model model,Principal principal) {
 		String realName = ls.getUsersFromUid(principal.getName());
 		model.addAttribute("realName", realName);
 		RestTemplate restTemplate = new RestTemplate();
@@ -59,13 +56,13 @@ public class CourrierInterneController {
 		model.addAttribute("roles", r);
 		model.addAttribute("directions", d);
 
-		return "CreationCourrierInterne";
+		return "CréationCourrierSortie";
 	}
-	@RequestMapping(value = "/sendCourrierInterneData", method = RequestMethod.POST, produces = "application/json")
-	public  String sendCourrierInterneData(Principal principal, @RequestParam("name") MultipartFile[] files,
+	@RequestMapping(value = "/sendCourrierSortieData", method = RequestMethod.POST, produces = "application/json")
+	public  String sendCourrierSortieData(Principal principal, @RequestParam("name") MultipartFile[] files,
 			@RequestParam("objet") Object objet, @RequestParam("dateIn") Object dateIn,
 			@RequestParam("dateOut") Object dateOut, @RequestParam("societe") String societe) {
-
+System.out.println("sortie");
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
 		List<Object> files1 = new ArrayList<>();
 		System.out.println(files.length + "n     " + dateOut);
@@ -99,7 +96,7 @@ public class CourrierInterneController {
 		map.add("dateOut", dateOut);
 		map.add("societe", societe);
 		map.add("expéditeur", "Direction Générale");
-		map.add("déstinataire", "Direction IT");
+		map.add("déstinataire", "steg");
 		map.add("starter",principal.getName());
 		System.out.println("the map"+map);
 		RestTemplate restTemplate = new RestTemplate();
@@ -113,11 +110,11 @@ public class CourrierInterneController {
 
 		map.add("direction", d.get(0));
 		
-		restTemplate.postForObject(SERVER_URI + "/créerCourrierInterne", map, Void.class);
+		restTemplate.postForObject(SERVER_URI + "/créerCourrierSortie", map, Void.class);
 
-		return "dashboard";
+		return "dashboard"; 
 	}
-	@RequestMapping(value = "/CourriersInternes", method = RequestMethod.GET)
+	@RequestMapping(value = "/CourriersSorties", method = RequestMethod.GET)
 	public String showHome(Principal principal, Model model) {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> roles = restTemplate
@@ -129,7 +126,7 @@ public class CourrierInterneController {
 			System.out.println("zzzzz");
 			if (r.get(i).equals("secrétairesGénérale")) {
 				@SuppressWarnings("unchecked")
-				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/listCourriersInternes",
+				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/listCourriersSorties",
 						ArrayList.class);
 				System.out.println("eeee" + allCourrier);
 				model.addAttribute("allCourrier", allCourrier);
@@ -137,16 +134,16 @@ public class CourrierInterneController {
 				System.out.println("zerte"+principal.getName());
 				@SuppressWarnings("unchecked")
 				List<Map<String, Object>> finishedCourrier = restTemplate.getForObject(
-						SERVER_URI + "/getListCourriersInternesParUser" + "?username=" + principal.getName(),
+						SERVER_URI + "/getListCourriersSortiesParUser" + "?username=" + principal.getName(),
 						ArrayList.class);
 				System.out.println("yyyy" + finishedCourrier);
 				model.addAttribute("finishedCourrier", finishedCourrier);
 			}
 		}
-		return "CourriersInternes";
+		return "CourriersDéparts";
 	}
 	
-	@RequestMapping(value = "/mail_detail_interne", method = RequestMethod.GET)
+	@RequestMapping(value = "/mail_detail_sortie", method = RequestMethod.GET)
 	public String showCourrierDetail(@RequestParam("id") String id, Model model, HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
 		List<String> paths = new ArrayList<>();
@@ -184,9 +181,9 @@ public class CourrierInterneController {
 		// model.addAttribute("selectedCourrier",
 		// sCourrier.getBody().getFilename());
 
-		return "mail_detail_interne";
+		return "mail_detail_Sortie";
 	}
-	@RequestMapping(value = "/réviserCourrierInterne", method = RequestMethod.POST)
+	@RequestMapping(value = "/réviserCourrierSortie", method = RequestMethod.POST)
 	public String réviserCourrier(Model model, @RequestBody Map<String, Object> data) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		String idCourrier = (String) data.get("idCourrier").toString();
@@ -195,48 +192,11 @@ public class CourrierInterneController {
 		params.put("isValidated", isValidated);
 		System.out.println("nnnnn"+params);
 
-		restTemplate.postForObject(SERVER_URI + "/réviserInterne", params, Void.class);
+		restTemplate.postForObject(SERVER_URI + "/réviserSortie", params, Void.class);
 		System.out.println("revisité");
 		return "home";
 	}
-	@RequestMapping(value = "/forwardInterne" ,method=RequestMethod.GET)
-
-	public String forwardMail(@RequestParam("id") String idCourrier,ModelMap model,Principal principal) {
-		model.addAttribute("idCourrier", idCourrier);
-		@SuppressWarnings("unchecked")
-		Map<String, Object> selectedCourrier = restTemplate
-				.getForObject(SERVER_URI + "/getCourrierDetails" + "?id=" + idCourrier, HashMap.class);
-System.out.println("eee"+selectedCourrier);
-
-@SuppressWarnings("unchecked")
-Map<String,Object> roles=restTemplate.getForObject(SERVER_URI+"/getUserRole"+"?uid=" + principal.getName(), HashMap.class);
-@SuppressWarnings("unchecked")
-List<String>r=(List<String>) roles.get("roles");
-@SuppressWarnings("unchecked")
-List<String>d=(List<String>) roles.get("directions");
-		@SuppressWarnings("unchecked")
-		List<String> getSousDir = restTemplate.getForObject(SERVER_URI + "/getSousGroup"+"?id="+idCourrier+"&direction="+d.get(0) ,ArrayList.class);
-		System.out.println("tyui"+getSousDir);
-		model.addAttribute("getSousDir",getSousDir);
-
-		return "forwordInterne";
-
-	}
-	
-	@RequestMapping(value = "/forwardingInterne" ,method=RequestMethod.POST)
-	
-	public String forwardMailTo(@RequestParam("idCourrier") String idCourrier,@RequestParam("idDepartement") String idDepartement,@RequestParam("annotation") String annotation,ModelMap model,Principal principal) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("idCourrier", idCourrier);
-		map.put("affectedTo", idDepartement); 
-		map.put("username", principal.getName());
-		map.put("annotation", annotation);
-System.out.println("cvb"+map);
-		restTemplate.postForObject(SERVER_URI + "/traiterCourrierInterne" ,map,Void.class);
-		return "dashboard";
-
-	}
-	@RequestMapping(value = "/archiverCourrierInterne" ,method=RequestMethod.GET)
+	@RequestMapping(value = "/archiverCourrierSortie" ,method=RequestMethod.GET)
 
 	public String archiverCourrier(@RequestParam("id") String idCourrier) {
 		//get archier method from server side
@@ -245,5 +205,4 @@ System.out.println("mrigel");
 		return "dashboard";
 
 	}
-
 }

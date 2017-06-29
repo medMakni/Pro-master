@@ -376,7 +376,7 @@
 					<c:choose>
 										<c:when test="${selectedCourrier['isChecked']==true}">
 						<div class="pull-right tooltip-demo">
-							<a href="${pageContext.request.contextPath}/forward?id=<c:out value="${selectedCourrier['idCourrier']}"/>" class="btn btn-white btn-sm"
+							<a href="${pageContext.request.contextPath}/forwardInterne?id=<c:out value="${selectedCourrier['idCourrier']}"/>" class="btn btn-white btn-sm"
 								data-toggle="tooltip" data-placement="top" title="transférer"><i
 								class="fa fa-mail-forward"></i> transférer</a> <a href="${pageContext.request.contextPath}/archiverCourrier?id=<c:out value="${selectedCourrier['idCourrier']}"/>"
 								class="btn btn-white btn-sm" data-toggle="tooltip"
@@ -505,8 +505,8 @@
 											</div>
 											<div class="modal-body">
 												<c:choose>
-													<c:when test="${basename=='pdf'}">
-													
+													<c:when test="${invoker=='pdf'}">
+													${basename }
 														<embed src="resources/img/${paths[0]}" width="850px"
 															height="700px" />
 													</c:when>
@@ -602,14 +602,14 @@
 				$
 						.ajax({
 							type : 'POST',
-							url : '<c:url value="/réviserCourrier" />',
+							url : '<c:url value="/réviserCourrierInterne" />',
 							data : JSON
 									.stringify({
 										"idCourrier" : <c:out value="${selectedCourrier['idCourrier']}" />,
 										"isValidated" : isValidated
 									}),
-							success : success,
-							error : error,
+									success : success,
+									error : error,
 							contentType : "application/json; charset=utf-8",
 							dataType : "json"
 

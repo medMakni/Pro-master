@@ -51,7 +51,17 @@ public class TestController {
 		
 		model.addAttribute("roles", r);
 		model.addAttribute("directions", d);
+		
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> allContacts = restTemplate.getForObject(SERVER_URI + "/findAllContacts", ArrayList.class);
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> allCompanies = restTemplate.getForObject(SERVER_URI + "/findAllCompanies", ArrayList.class);
+		System.out.println("zzz"+allCompanies);
 
+		model.addAttribute("allContacts", allContacts);
+		model.addAttribute("allCompanies", allCompanies);
+		List<String>allDirections= restTemplate.getForObject(SERVER_URI + "/getAllDirections", ArrayList.class);
+		model.addAttribute("allDirections", allDirections);
 		return "CreationCourrier";
 	}
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
