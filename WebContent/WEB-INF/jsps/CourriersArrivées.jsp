@@ -23,6 +23,13 @@
 
 
 
+
+    <link href="resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+
+
+
+
 <link href="resources/css/plugins/datapicker/datepicker3.css"
 	rel="stylesheet">
 
@@ -231,6 +238,23 @@
 							</div>
 							<div class="ibox-content">
 								<div class="row">
+								<div class="col-sm-12">
+								<div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline">
+                                            <label for="inlineRadio1"> tous </label>
+                                        </div>
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                            <label for="inlineRadio2"> actifs </label>
+                                        </div>
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio3" value="option3" name="radioInline">
+                                            <label for="inlineRadio3"> finis </label>
+                                        </div>
+								</div>
+								</div>
+								<div class="row">
+								
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="control-label" for="date_added">A
@@ -325,7 +349,6 @@
 										</tr>
 									</tfoot>
 								</table>
-								<button type="button" onclick="searchViaAjax()">ffff</button>
 							</div>
 						</div>
 					</div>
@@ -364,7 +387,7 @@
 	<!-- Page-Level Scripts -->
 	<script>
 		$(document).ready(function() {
-
+			
 			$('.footable').footable();
 			$('.footable2').footable();
 
@@ -435,22 +458,47 @@
 
 		});
 	</script>
+<c:choose>
+<c:when test="${allCourrier != null}">
+											
 <script type="text/javascript">
-function searchViaAjax() {
 
 
 
-	$.ajax({
+	$(document).ready(function(){
+		$.ajax({
 		type : "GET",
 		contentType : "application/json",
 		url : "http://localhost:8081/BackEndFinalVersion/listCourriersArrivés",
 		data: { get_param: 'value' },
 		dataType : 'json',
 		timeout : 100000,
-		success : function(data) {
-			console.log("SUCCESS: ", data['0'].idCourrier);
-			alert(data['0'].idCourrier);
-		},
+		success :function(data) { 
+			trHTML = '';
+			$('input[type=radio][name=radioInline]').change(function() {
+				if (data == null) {
+				      alert("No records"+data);
+				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
+				    } else if(this.value == 'option2'){
+				      $.each(data, function(i, item) {
+				    		$("body").on("click", "#datatable tr", function () {
+				    		    
+				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
+				    			});
+
+				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
+						
+
+				      });
+				      $('#datatable tbody').html(trHTML);
+				    }
+			
+				trHTML = '';
+	    }) 
+		},		
+			
+			
+		
 		error : function(e) {
 			console.log("ERROR: ", e);
 			alert(e);
@@ -458,8 +506,213 @@ function searchViaAjax() {
 		
 	});
 
-}
+	});
+	
 </script>
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "http://localhost:8081/BackEndFinalVersion/getFinishedCourrier",
+		data: { get_param: 'value' },
+		dataType : 'json',
+		timeout : 100000,
+		success :function(result) { 
+			trHTML = '';
+			$('input[type=radio][name=radioInline]').change(function() {
+				if (result == null) {
+				      alert("No records");
+				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
+				    } else if(this.value == 'option3'){
+				      $.each(result, function(i, item) {
+				    	  $("body").on("click", "#datatable tr", function () {
+				    		    
+				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
+				    			});
+				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
+						
+
+				      });
+				      $('#datatable tbody').html(trHTML);
+				    }
+			
+				trHTML = '';
+	    }) 
+		},		
+			
+			
+		
+		error : function(e) {
+			console.log("ERROR: ", e);
+			alert(e);
+		},
+		
+	});
+
+	});
+	
+</script>
+</c:when>
+
+<c:when test="${finishedCourrier != null}">
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "http://localhost:8081/BackEndFinalVersion/getActiveAndFinishedCourriersPerUser"+ "?uid=" + '${pageContext.request.userPrincipal.name}',
+		data: { get_param: 'value' },
+		dataType : 'json',
+		timeout : 100000,
+		success :function(result1) { 
+			trHTML = '';
+			$('input[type=radio][name=radioInline]').change(function() {
+				if (result1 == null) {
+				      alert("No records");
+				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
+				    } else if(this.value == 'option1'){
+				    	console.log(result1);
+
+				      $.each(result1, function(i, item) {
+				    	  $("body").on("click", "#datatable tr", function () {
+				    		    
+				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
+				    			});
+				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
+
+				      });
+						$('#datatable tbody').html(trHTML);
+
+				    }
+
+				trHTML = '';
+	    }) 
+		},		
+			
+			
+		
+		error : function(e) {
+			console.log("ERROR: ", e);
+			alert(e);
+		},
+		
+	});
+
+	});
+	
+</script>											
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "http://localhost:8081/BackEndFinalVersion/getListCourriersArrivésParUser"+ "?username=" + '${pageContext.request.userPrincipal.name}',
+		data: { get_param: 'value' },
+		dataType : 'json',
+		timeout : 100000,
+		success :function(data) { 
+			trHTML = '';
+			$('input[type=radio][name=radioInline]').change(function() {
+				if (data == null) {
+				      alert("No records"+data);
+				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
+				    } else if(this.value == 'option2'){
+				    	console.log(data['0'].idCourrier);
+				      $.each(data, function(i, item) {
+				    	  $("body").on("click", "#datatable tr", function () {
+				    		    
+				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
+				    			});
+				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
+				        
+				      });
+				      $('#datatable tbody').html(trHTML);
+				    }
+			
+				
+				trHTML = '';
+	    }) 
+		},		
+			
+			
+		
+		error : function(e) {
+			console.log("ERROR: ", e);
+			alert(e);
+		},
+		
+	});
+
+	});
+	
+</script>
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "http://localhost:8081/BackEndFinalVersion/getListFinishedCourrierPerUser"+ "?uid=" + '${pageContext.request.userPrincipal.name}',
+		data: { get_param: 'value' },
+		dataType : 'json',
+		timeout : 100000,
+		success :function(result) { 
+			trHTML = '';
+			$('input[type=radio][name=radioInline]').change(function() {
+				if (result == null) {
+				      alert("No records");
+				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
+				    } else if(this.value == 'option3'){
+				    	console.log(result);
+
+				      $.each(result, function(i, item) {
+				    	  $("body").on("click", "#datatable tr", function () {
+				    		    
+				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
+				    			});
+				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
+				        
+				      });
+				      $('#datatable tbody').html(trHTML);
+				    }
+			
+				
+				trHTML = '';
+	    }) 
+		},		
+			
+			
+		
+		error : function(e) {
+			console.log("ERROR: ", e);
+			alert(e);
+		},
+		
+	});
+
+	});
+	
+</script>
+
+</c:when>
+
+</c:choose>
 
 </body>
 
