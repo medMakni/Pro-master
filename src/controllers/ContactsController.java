@@ -151,4 +151,14 @@ System.out.println("uuu"+updateContact);
 		return "contactsList";
 
 	}
+	@RequestMapping(value = "/findCompanyByContact", method = RequestMethod.GET)
+	public String findCompanyByContact(Model model) {
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> allContacts = restTemplate.getForObject(SERVER_URI + "/findCompanyByContact"+"?idSociété=1", ArrayList.class);
+
+		model.addAttribute("allContacts", allContacts);
+
+		return "contactsList";
+
+	}
 }

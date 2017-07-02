@@ -169,17 +169,7 @@
 			<div class="row border-bottom">
 				<nav class="navbar navbar-static-top" role="navigation"
 					style="margin-bottom: 0">
-					<div class="navbar-header">
-						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary "
-							href="resources/#"><i class="fa fa-bars"></i> </a>
-						<form role="search" class="navbar-form-custom"
-							action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
-							<div class="form-group">
-								<input type="text" placeholder="Search for something..."
-									class="form-control" name="top-search" id="top-search">
-							</div>
-						</form>
-					</div>
+					
 					<ul class="nav navbar-top-links navbar-right">
 						<li><span class="m-r-sm text-muted welcome-message">Welcome
 								${pageContext.request.userPrincipal.name}</span></li>
@@ -239,40 +229,7 @@
 									</div>
 								</li>
 							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle count-info"
-							data-toggle="dropdown" href="resources/#"> <i
-								class="fa fa-bell"></i> <span class="label label-primary">8</span>
-						</a>
-							<ul class="dropdown-menu dropdown-alerts">
-								<li><a href="resources/mailbox.html">
-										<div>
-											<i class="fa fa-envelope fa-fw"></i> You have 16 messages <span
-												class="pull-right text-muted small">4 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li><a href="resources/profile.html">
-										<div>
-											<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-												class="pull-right text-muted small">12 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li><a href="resources/grid_options.html">
-										<div>
-											<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-												class="pull-right text-muted small">4 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li>
-									<div class="text-center link-block">
-										<a href="resources/notifications.html"> <strong>See
-												All Alerts</strong> <i class="fa fa-angle-right"></i>
-										</a>
-									</div>
-								</li>
-							</ul></li>
+						
 
 
 						<li><a href="${pageContext.request.contextPath}/logout">
@@ -390,7 +347,7 @@
 										<label class="col-sm-2 control-label">Organisme:</label>
 
 										<div class="col-sm-3">
-											<select	class="select2_demo_1 form-control" name="societe">
+											<select	class="select2_demo_1 form-control" name="societe" id="societe">
 										<c:forEach items="${allCompanies}" var="map">
 											<option value="<c:out value="${map['idSociété']}" />"><c:out value="${map['nom']}" /></option>
 										
@@ -474,17 +431,7 @@
 
 												<div class="mail-text h-200">
 													<div class="summernote" >
-														<h3>Hello Jonathan!</h3>
-														dummy text of the printing and typesetting industry. <strong>Lorem
-															Ipsum has been the industry's</strong> standard dummy text ever
-														since the 1500s, when an unknown printer took a galley of
-														type and scrambled it to make a type specimen book. It has
-														survived not only five centuries, but also the leap into
-														electronic typesetting, remaining essentially unchanged.
-														It was popularised in the 1960s with the release of
-														Letraset sheets containing Lorem Ipsum passages, and more
-														recently with <br /> <br />
-
+														
 													</div>
 													<div>
 														<script src="resource/js/fileinput.js"></script>
@@ -513,14 +460,7 @@
 
 													</div>
 
-													<div class="clearfix"></div>
-
-													<div class="mail-body text-right tooltip-demo">
-														<input type="submit" class="btn btn-sm btn-primary"
-															data-toggle="tooltip" data-placement="top" title="Send"
-															value="send" />
-														<!-- <i class="fa fa-reply"></i> -->
-													</div>
+													
 
 												</div>
 												<div class="clearfix"></div>
@@ -784,6 +724,42 @@
 
 				});
 	</script>
+	<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		console.log("resultredvfa: ", $("societe").attr("id"));
+
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "http://localhost:8081/BackEndFinalVersion/findCompanyByContact"+"?idSociété=1",
+		data: { get_param: 'value' },
+		dataType : 'json',
+		timeout : 100000,
+		success :function(result) { 
+			
+			$('input[name=societe]').change(function() {
+		
+				console.log("result: ", result);
+
+			
+	    }) 
+		},		
+			
+			
+		
+		error : function(e) {
+			console.log("ERROR: ", e);
+			alert(e);
+		},
+		
+	});
+
+	});
+	
+</script>
 
 </body>
 

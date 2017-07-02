@@ -10,6 +10,19 @@
 
 <title>INSPINIA | FooTable</title>
 
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table_jui.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_page.css" rel="stylesheet" data-semver="1.9.4" data-require="datatables@*" />
+    <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+    <script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js"></script>
+
+
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/font-awesome/css/font-awesome.css"
 	rel="stylesheet">
@@ -106,17 +119,7 @@
 			<div class="row border-bottom">
 				<nav class="navbar navbar-static-top" role="navigation"
 					style="margin-bottom: 0">
-					<div class="navbar-header">
-						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary "
-							href="resources/#"><i class="fa fa-bars"></i> </a>
-						<form role="search" class="navbar-form-custom"
-							action="http://webapplayers.com/inspinia_admin-v2.4/search_results.html">
-							<div class="form-group">
-								<input type="text" placeholder="Search for something..."
-									class="form-control" name="top-search" id="top-search">
-							</div>
-						</form>
-					</div>
+					
 					<ul class="nav navbar-top-links navbar-right">
 						<li><span class="m-r-sm text-muted welcome-message">Welcome
 								${pageContext.request.userPrincipal.name}</span></li>
@@ -176,40 +179,7 @@
 									</div>
 								</li>
 							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle count-info"
-							data-toggle="dropdown" href="resources/#"> <i
-								class="fa fa-bell"></i> <span class="label label-primary">8</span>
-						</a>
-							<ul class="dropdown-menu dropdown-alerts">
-								<li><a href="resources/mailbox.html">
-										<div>
-											<i class="fa fa-envelope fa-fw"></i> You have 16 messages <span
-												class="pull-right text-muted small">4 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li><a href="resources/profile.html">
-										<div>
-											<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-												class="pull-right text-muted small">12 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li><a href="resources/grid_options.html">
-										<div>
-											<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-												class="pull-right text-muted small">4 minutes ago</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li>
-									<div class="text-center link-block">
-										<a href="resources/notifications.html"> <strong>See
-												All Alerts</strong> <i class="fa fa-angle-right"></i>
-										</a>
-									</div>
-								</li>
-							</ul></li>
+						
 
 
 						<li><a href="${pageContext.request.contextPath}/logout">
@@ -240,7 +210,7 @@
 								<div class="row">
 								<div class="col-sm-12">
 								<div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline">
+                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="checked">
                                             <label for="inlineRadio1"> tous </label>
                                         </div>
                                         <div class="radio radio-info radio-inline">
@@ -342,11 +312,7 @@
 										</c:choose>
 									</tbody>
 									<tfoot>
-										<tr>
-											<td colspan="5">
-												<ul class="pagination pull-right"></ul>
-											</td>
-										</tr>
+										
 									</tfoot>
 								</table>
 							</div>
@@ -366,12 +332,11 @@
 		</div>
 	</div>
 
-
-
+	<script src="resources/js/jquery-2.1.1.js"></script>
 
 
 	<!-- Mainly scripts -->
-	<script src="resources/js/jquery-2.1.1.js"></script>
+	<script src="resources/js/jquery.dataTables.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 	<script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -400,12 +365,61 @@
 	    });
 	});
 	</script>
+	<script type="text/javascript">
+    $(document).ready(function(){
+        $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#date_added').datepicker("getDate");
+            var max = $('#date_modified').datepicker("getDate");
+            
+            var d = data[2].split("/");
+            var startDate = new Date(d[0]+ "/" +  d[1] +"/" + d[2]);            
+
+
+            if (min == null && max == null) { return true; }
+            if (min == null && startDate <= max) { return true;}
+            if(max == null && startDate >= min) {return true;}
+            if (startDate <= max && startDate >= min) { return true; }
+            return false;
+        }
+        );
+
+       
+            $("#date_added").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#date_modified").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#datatable').DataTable();
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#date_added, #date_modified').change(function () {
+            	 var table = $('#datatable').DataTable();
+            	table.draw();
+            });
+            
+            $('#inlineRadio1').change(function () {
+            	 var table = $('#datatable').DataTable();
+                table.draw();
+            });
+            $('#inlineRadio2').change(function () {
+            	
+            	 var table = $('#datatable').DataTable();
+                table.draw();
+                console.log(table.rows().data()[0]);
+                
+            });
+            $('#inlineRadio3').change(function () {
+            	 var table = $('#datatable').DataTable();
+                table.draw();
+                console.log(table);
+
+            });
+        });
+	</script>
 	<script>
 		var fromTimeInput = $('#date_added');
 		var toTimeInput = $('#date_modified');
 		var fromTime = fromTimeInput.val();
 		var toTime = toTimeInput.val();
-
+		  
 		fromTimeInput.datepicker({
 			keyboardNavigation : false,
 			forceParse : false,
@@ -466,6 +480,8 @@
 
 
 	$(document).ready(function(){
+		var allCourrier='${allCourrier}';
+		console.log(allCourrier);
 		$.ajax({
 		type : "GET",
 		contentType : "application/json",
@@ -476,6 +492,7 @@
 		success :function(data) { 
 			trHTML = '';
 			$('input[type=radio][name=radioInline]').change(function() {
+
 				if (data == null) {
 				      alert("No records"+data);
 				       //trHTML = '<tr><td>'No Records to be show'</td></tr>';
@@ -485,12 +502,14 @@
 				    		    
 				    			window.location ="/Pro/mail_detail?id="+item.idCourrier;	
 				    			});
-
+				    	
 				        trHTML += '<tr><td>' + item.expéditeur + '</td><td>' + item.société + '</td><td>' + item.date + '</td><td>' + item.objet + '</td></tr>';
 						
 
 				      });
-				      $('#datatable tbody').html(trHTML);
+				      $('#datatable tbody tr').remove();
+
+				      $('#datatable tbody').append(trHTML);
 				    }
 			
 				trHTML = '';

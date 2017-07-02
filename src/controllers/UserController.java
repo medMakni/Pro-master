@@ -37,10 +37,18 @@ public class UserController {
 		for (int i = 0; i < r.size(); i++) {
 			System.out.println("zzzzz");
 			if (r.get(i).equals("secrétairesGénérale")) {
-				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/getCourrierByStarter"+ "?uid=" + principal.getName(),
+				List<Map<String, Object>> allCourrier = restTemplate.getForObject(SERVER_URI + "/listCourriersArrivés",
+						ArrayList.class);
+				List<Map<String, Object>> allCourrierActives = restTemplate.getForObject(SERVER_URI + "/listCourriersArrivés",
+						ArrayList.class);
+				List<Map<String, Object>> allCourrierfinies = restTemplate.getForObject(SERVER_URI + "/getFinishedCourrier",
 						ArrayList.class);
 				System.out.println("ttttt"+allCourrier);
 				model.addAttribute("allCourrier", allCourrier);
+				model.addAttribute("allCourrierActives", allCourrierActives);
+
+				model.addAttribute("allCourrierfinies", allCourrierfinies);
+
 			} else {
 				System.out.println("zerte"+principal.getName());
 				List<Map<String, Object>> finishedCourrier = restTemplate.getForObject(
